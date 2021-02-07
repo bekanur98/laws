@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+{% block header %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ asset('style.css') }}">
 </head>
+{% endblock %}
 <body>
+{% block body %}
     <header class="header-block">
         <div class="header wrapper">
             <div class="logo header__logo">
@@ -61,7 +64,7 @@
             <div class="content">
                 <div class="new-question">
                     <div class="new-question__avatar">
-                        <img src="img/avatar.jpg" alt="avatar">
+                        <img src="{{ asset('img/avatar.jpg') }}" alt="avatar">
                     </div>
                     <div class="new-question__input">
                         <input type="text" placeholder="What's your question">
@@ -80,7 +83,7 @@
                         <div class="question-block">
                             <div class="question-block__top">
                                 <div class="question-block__avatar">
-                                    <img src="img/avatar.jpg" class="avatar-border" alt="avatar">
+                                    <img src="{{ asset('img/avatar.jpg') }}" class="avatar-border" alt="avatar">
                                 </div>
                                 <div class="question-block__header">
                                     <div class="user-info">
@@ -147,7 +150,7 @@
                             </div>
                             <div class="answer-block__bottom"> 
                                 <div class="answer-block__avatar">
-                                    <img src="img/avatar.jpg" class="avatar-border" alt="avatar">
+                                    <img src="{{ asset('img/avatar.jpg') }}" class="avatar-border" alt="avatar">
                                 </div>
                                 <div class="answer-block__content">
                                     <div class="user-info">
@@ -216,7 +219,7 @@
                     <div class="popular-answers__content">
                         <div class="popular-item-answer">
                             <div class="popular-item-answer__avatar">
-                                <img src="img/avatar.jpg" alt="avatar">
+                                <img src="{{ asset('img/avatar.jpg') }}" alt="avatar">
                             </div>
                             <div class="popular-item-answer__content">
                                 <p class="popular-item-answer__question">
@@ -231,7 +234,7 @@
                         </div>
                         <div class="popular-item-answer">
                             <div class="popular-item-answer__avatar">
-                                <img src="img/avatar.jpg" alt="avatar">
+                                <img src="{{ asset('img/avatar.jpg') }}" alt="avatar">
                             </div>
                             <div class="popular-item-answer__content">
                                 <p class="popular-item-answer__question">
@@ -255,7 +258,7 @@
                         <div class="member">
                             <div class="member__avatar">
                                 <a href="#">
-                                    <img src="img/avatar.jpg" class="avatar-border" alt="avatar">
+                                    <img src="{{ asset('img/avatar.jpg') }}" class="avatar-border" alt="avatar">
                                 </a>
                             </div>
                             <div class="member__info">
@@ -272,7 +275,7 @@
                         <div class="member">
                             <div class="member__avatar">
                                 <a href="#">
-                                    <img src="img/avatar.jpg" class="avatar-border" alt="avatar">
+                                    <img src="{{ asset('img/avatar.jpg') }}" class="avatar-border" alt="avatar">
                                 </a>
                             </div>
                             <div class="member__info">
@@ -289,7 +292,7 @@
                         <div class="member">
                             <div class="member__avatar">
                                 <a href="#">
-                                    <img src="img/avatar.jpg" class="avatar-border" alt="avatar">
+                                    <img src="{{ asset('img/avatar.jpg') }}" class="avatar-border" alt="avatar">
                                 </a>
                             </div>
                             <div class="member__info">
@@ -318,10 +321,12 @@
                         <a href="#" class="tranding-tags__tag">computer</a>
                     </div>
                 </div>
+            </div>
             </aside>
         </div>
     </main>
-
+{% endblock %}
+{% block footer %}
     <footer class="footer-block">
         <div class="footer wrapper">
 
@@ -360,6 +365,7 @@
             
         </div>
     </footer>
+{% endblock %}
 
     <div class="copyright-block">
         <p class="copyright">2021 Discy. All Right Reserved</p>
