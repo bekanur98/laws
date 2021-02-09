@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Form\LoginFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,6 +19,17 @@ class MainController extends AbstractController
         return $this->render('Default/home.html.twig');
     }
 
+    /**
+     * @Route("/login", name="login")
+     */
+    public function new(EntityManagerInterface $em)
+    {
+        $form = $this->createForm(LoginFormType::class);
+
+        return $this->render('others/login.html.twig', [
+            'loginForm' => $form->createView()
+        ]);
+    }
 
 }
 
