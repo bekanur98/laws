@@ -14,8 +14,7 @@
             <ul>
                 <li>
                     <a href="#">
-
-                        {% if app.request.getLocale == 'ky'  %}
+                        {% if app.request.getLocale == 'ky' %}
                             Кыргызча
                         {% elseif app.request.getLocale == 'ru' %}
                             Русский
@@ -23,7 +22,9 @@
                     </a>
                     <ul>
                         {% for language in languages %}
-                            <li><a class="{% if currentlocale == language.localeCode %} active {% endif %}" href="{{app.request.basePath}}/setlocale/{{language.localeCode}}">{{ language.title }}</a></li>
+                            <li><a class=" {% if currentlocale == language.localeCode %} active {% endif %}"
+                                   href="{{ app.request.basePath }}/setlocale/{{ language.localeCode }}">{{ language.title }}</a>
+                            </li>
                         {% endfor %}
                     </ul>
                 </li>

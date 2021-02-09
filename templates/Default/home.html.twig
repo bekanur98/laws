@@ -1,5 +1,6 @@
+{% trans_default_domain 'Homepage' %}
 {% extends 'Layouts/homepage.html.twig' %}
-{% block page_title %}Home{% endblock %}
+{% block page_title %}{{ 'home' | trans }}{% endblock %}
 
 {% block body %}
 <!--content-->
