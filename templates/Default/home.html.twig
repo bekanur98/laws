@@ -1,0 +1,133 @@
+{% extends 'Layouts/homepage.html.twig' %}
+{% block page_title %}Home{% endblock %}
+
+{% block body %}
+<!--content-->
+<div class="content">
+    <div class="new-question">
+        <div class="new-question__avatar">
+            <img src="{{ asset('img/avatar.jpg') }}" alt="avatar">
+        </div>
+        <div class="new-question__input">
+            <input type="text" placeholder="What's your question">
+        </div>
+    </div>
+    <div class="questions-block">
+        <div class="questions-tab">
+            <a href="#" class="questions-tab__item">Recent Questions</a>
+            <a href="#" class="questions-tab__item">Most Answered</a>
+            <a href="#" class="questions-tab__item">Bomp Questions</a>
+            <a href="#" class="questions-tab__item">Answers</a>
+            <a href="#" class="questions-tab__item">Most Visited</a>
+        </div>
+        <div class="questions-list">
+            <div class="question-block">
+                <div class="question-block__top">
+                    <div class="question-block__avatar">
+                        <img src="{{ asset('img/avatar.jpg') }}" class="avatar-border" alt="avatar">
+                    </div>
+                    <div class="question-block__header">
+                        <div class="user-info">
+                            <a href="#" class="user-info__author-name">Martin Hope</a>
+                            <span class="user-info__author-badge">Explainer</span>
+                            <p class="qustion-meta-data">
+                                            <span class="qustion-meta-data__meta-date">
+                                                Asked:
+                                                <a href="#">April 19, 2018</a>
+                                            </span>
+                                <span class="qustion-meta-data__byline">
+                                                In:
+                                                <a href="#">Language</a>
+                                            </span>
+                            </p>
+                        </div>
+                        <p class="question-block__question">
+                            <a href="#">Is this statement, “i see him last night” can be understood as “I
+                                saw him last night”?</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="question-block__bottom">
+                    <div class="question-block__rating">
+                        <p class="vote-up"></p>
+                        <p class="vote-result">62</p>
+                        <p class="vote-bottom"></p>
+                    </div>
+                    <div class="question-block__content">
+                        <p class="question-block__answer">I know this means “one must learn to walk before
+                            running”, but is there a less literal translation that is perhaps more appealing
+                            to an English-speaking audience?</p>
+                        <div class="tranding-tags">
+                            <a href="#" class="tranding-tags__tag">computer</a>
+                            <a href="#" class="tranding-tags__tag">computer</a>
+                            <a href="#" class="tranding-tags__tag">computer</a>
+                            <a href="#" class="tranding-tags__tag">computer</a>
+                        </div>
+                        <p class="question-block__footer">
+                                        <span class="question-block__best-answers">
+                                            <a href="#">4 answers</a>
+                                        </span>
+                            <span class="question-block__views">80 Views</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="answers-list">
+            <div class="answer-block">
+                <div class="answer-block__top">
+                    <div class="answer-block__question-block">
+                        <p class="qustion-meta-data">
+                                        <span class="qustion-meta-data__meta-date">
+                                            Asked:
+                                            <a href="#">April 19, 2018</a>
+                                        </span>
+                            <span class="qustion-meta-data__byline">
+                                            In:
+                                            <a href="#">Language</a>
+                                        </span>
+                        </p>
+                        <p class="answer-block__question">
+                            <a href="#">Why are the British confused about us calling bread rolls “biscuits”
+                                when they call bread rolls “puddings”?</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="answer-block__bottom">
+                    <div class="answer-block__avatar">
+                        <img src="{{ asset('img/avatar.jpg') }}" class="avatar-border" alt="avatar">
+                    </div>
+                    <div class="answer-block__content">
+                        <div class="user-info">
+                            <a href="#" class="user-info__author-name">Martin Hope</a>
+                            <span class="user-info__author-badge">Explainer</span>
+                        </div>
+                        <p class="answer-block__meta">
+                            Added an answer on April 19, 2018 at 2:07 am
+                        </p>
+                        <p class="answer-block__answer">
+                            It may be little things like not using native idioms, that you would pick up
+                            from living in the UK.
+
+                            But, hey. That’s just a guess.
+
+                            Also, I don’t think I would’ve noticed you were foreign from what you wrote, if
+                            you didn’t point it o
+                        </p>
+                        <div class="answer-block__action">
+                            <div class="answer-block__rating">
+                                <p class="vote-up"></p>
+                                <p class="vote-result">62</p>
+                                <p class="vote-bottom"></p>
+                            </div>
+                            <a href="#" class="answer-block__share">Share</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/content-->
+{% endblock %}

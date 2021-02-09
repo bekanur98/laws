@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block page_title %}{% endblock %}</title>
+    {% block stylesheets %}
+        {{ render(controller("App\\Controller\\BlocksController:cssAction")) }}
+    {% endblock %}
+</head>
+<body>
+<!-- header -->
+{% block header %} {{ render(controller("App\\Controller\\BlocksController:headerAction")) }} {% endblock %}
+<!--/header-->
+
+<!-- left -->
+{% block left_side %} {{ render(controller("App\\Controller\\BlocksController::leftSideAction")) }} {% endblock %}
+<!--/left-->
+
+
+
+<!-- content -->
+{% block body %} {% endblock %}
+<!--/content -->
+
+<!-- right -->
+{% block rigth_side %} {{ render(controller("App\\Controller\\BlocksController:rightSideAction")) }} {% endblock %}
+<!--/right -->
+
+
+<!-- footer -->
+{% block footer %} {{ render(controller("App\\Controller\\BlocksController:footerAction")) }} {% endblock %}
+<!--/footer -->
+
+<div class="copyright-block">
+    <p class="copyright">2021 Discy. All Right Reserved</p>
+</div>
+</body>
+</html>
