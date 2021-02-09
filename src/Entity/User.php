@@ -35,6 +35,51 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="string", length=32)
+     */
+    private $username;
+
+    /**
+     * @ORM\Column(type="string", length=32,unique=true)
+     */
+    private $first_name;
+
+    /**
+     * @ORM\Column(type="string", length=32)
+     */
+    private $last_name;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $phone_number;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $is_locked;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $confirmation_token;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $requested_at;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $is_lawyer;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $law_licence_no;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -111,5 +156,108 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    public function getFirstName(): ?string
+    {
+        return $this->first_name;
+    }
+
+    public function setFirstName(string $first_name): self
+    {
+        $this->first_name = $first_name;
+
+        return $this;
+    }
+
+    public function getLastName(): ?string
+    {
+        return $this->last_name;
+    }
+
+    public function setLastName(string $last_name): self
+    {
+        $this->last_name = $last_name;
+
+        return $this;
+    }
+
+    public function getPhoneNumber(): ?string
+    {
+        return $this->phone_number;
+    }
+
+    public function setPhoneNumber(?string $phone_number): self
+    {
+        $this->phone_number = $phone_number;
+
+        return $this;
+    }
+
+    public function getIsLocked(): ?bool
+    {
+        return $this->is_locked;
+    }
+
+    public function setIsLocked(bool $is_locked): self
+    {
+        $this->is_locked = $is_locked;
+
+        return $this;
+    }
+
+    public function getConfirmationToken(): ?string
+    {
+        return $this->confirmation_token;
+    }
+
+    public function setConfirmationToken(string $confirmation_token): self
+    {
+        $this->confirmation_token = $confirmation_token;
+
+        return $this;
+    }
+
+    public function getRequestedAt(): ?\DateTimeInterface
+    {
+        return $this->requested_at;
+    }
+
+    public function setRequestedAt(\DateTimeInterface $requested_at): self
+    {
+        $this->requested_at = $requested_at;
+
+        return $this;
+    }
+
+    public function getIsLawyer(): ?bool
+    {
+        return $this->is_lawyer;
+    }
+
+    public function setIsLawyer(bool $is_lawyer): self
+    {
+        $this->is_lawyer = $is_lawyer;
+
+        return $this;
+    }
+
+    public function getLawLicenceNo(): ?string
+    {
+        return $this->law_licence_no;
+    }
+
+    public function setLawLicenceNo(?string $law_licence_no): self
+    {
+        $this->law_licence_no = $law_licence_no;
+
+        return $this;
     }
 }
