@@ -19,18 +19,6 @@ class MainController extends AbstractController
         return $this->render('Default/home.html.twig');
     }
 
-    /**
-     * @Route("/login", name="login")
-     */
-    public function new(EntityManagerInterface $em)
-    {
-        $form = $this->createForm(LoginFormType::class);
-
-        return $this->render('others/login.html.twig', [
-            'loginForm' => $form->createView()
-        ]);
-    }
-
 }
 
 ?>
