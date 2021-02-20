@@ -6,7 +6,7 @@
 
         <div class="nav">
             <p class="nav__links">
-                <a href="#" class="nav__link">Home</a>
+                <a href="{{ path('index') }}" class="nav__link">Home</a>
                 <a href="#" class="nav__link">About Us</a>
                 <a href="#" class="nav__link">Blog</a>
                 <a href="#" class="nav__link">Contact Us</a>
@@ -39,7 +39,7 @@
 
         <div class="login-block">
             <a href="{{ path('app_login') }}" class="btn">Sign in</a>
-            <button class="btn btn_bg_grey">Sign Up</button>
+            <a href="{{ path('app_register') }}" class="btn">Sign up</a>
         </div>
     </div>
 </header>

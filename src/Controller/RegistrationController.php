@@ -11,6 +11,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class RegistrationController extends AbstractController
 {
@@ -25,6 +26,8 @@ class RegistrationController extends AbstractController
 
         $form = $this->createForm(UserType::class, $user);
 
+//        $user->setRequestedAt(new \Datetime('now'));
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
@@ -34,7 +37,9 @@ class RegistrationController extends AbstractController
             $em->persist($user);
             $em->flush();
 
-//            return $this->redirectToRoute('login');
+            $this->addFlash('success', 'Yayy! Successfully registrated');
+
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('security/registration.html.twig', array(

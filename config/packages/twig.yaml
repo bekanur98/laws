@@ -5,3 +5,5 @@ twig:
     exception_controller: null
     cache: false
     form_themes: ['bootstrap_4_layout.html.twig']
+#    form_themes:
+#        - bootstrap_4_layout.html.twig
