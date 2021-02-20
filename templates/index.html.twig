@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 {% block header %}
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{{ asset('style.css') }}">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="{{ asset('style.css') }}">
+    </head>
 {% endblock %}
 <body>
 {% block body %}
@@ -24,7 +24,7 @@
                     <a href="#" class="nav__link">Contact Us</a>
                 </p>
                 <div class="search-block">
-                    <input type="search" class="search-block__input" placeholder="Type Search Words">
+                    <input type="search" class="search-block__input" placeholde>
                     <button class="search-block__btn">Поиск</button>
                 </div>
             </div>
@@ -35,23 +35,22 @@
             </div>
         </div>
     </header>
-
     <div class="hero">
 
     </div>
 
     <main class="main">
         <div class="main-wrapper wrapper">
-            
+
             <aside class="sidebar side-nav">
                 <a href="#" class="side-nav__link">Home</a>
                 <a href="#" class="side-nav__link">Add group</a>
                 <a href="#" class="side-nav__link">Groups page</a>
                 <a href="#" class="side-nav__link">Communities</a>
                 <a href="#" class="side-nav__link">Questions</a>
-                <a href="#" class="side-nav__link side-nav__link_grey">New Questions</a>
-                <a href="#" class="side-nav__link side-nav__link_grey">Trending Questions</a>
-                <a href="#" class="side-nav__link side-nav__link_grey">Must read Questions</a>
+                <a href="#" class="side-nav__link side-nav__link_grey">New Questions </a>
+                <a href="#" class="side-nav__link side-nav__link_grey">Trending Questions </a>
+                <a href="#" class="side-nav__link side-nav__link_grey">Must read Questions </a>
                 <a href="#" class="side-nav__link side-nav__link_grey">Hot Questions</a>
                 <a href="#" class="side-nav__link">Polls</a>
                 <a href="#" class="side-nav__link">Tags</a>
@@ -60,7 +59,7 @@
                 <a href="#" class="side-nav__link">Help</a>
                 <a href="#" class="side-nav__link">Buy Theme</a>
             </aside>
-            
+
             <div class="content">
                 <div class="new-question">
                     <div class="new-question__avatar">
@@ -78,7 +77,7 @@
                         <a href="#" class="questions-tab__item">Bomp Questions</a>
                         <a href="#" class="questions-tab__item">Answers</a>
                         <a href="#" class="questions-tab__item">Most Visited</a>
-                    </div> 
+                    </div>
                     <div class="questions-list">
                         <div class="question-block">
                             <div class="question-block__top">
@@ -91,7 +90,7 @@
                                         <span class="user-info__author-badge">Explainer</span>
                                         <p class="qustion-meta-data">
                                             <span class="qustion-meta-data__meta-date">
-                                                Asked: 
+                                                Asked:
                                                 <a href="#">April 19, 2018</a>
                                             </span>
                                             <span class="qustion-meta-data__byline">
@@ -101,7 +100,8 @@
                                         </p>
                                     </div>
                                     <p class="question-block__question">
-                                        <a href="#">Is this statement, “i see him last night” can be understood as “I saw him last night”?</a>
+                                        <a href="#">Is this statement, “i see him last night” can be understood as “I
+                                            saw him last night”?</a>
                                     </p>
                                 </div>
                             </div>
@@ -112,10 +112,12 @@
                                     <p class="vote-bottom"></p>
                                 </div>
                                 <div class="question-block__content">
-                                    <p class="question-block__answer">I know this means “one must learn to walk before running”, but is there a less literal translation that is perhaps more appealing to an English-speaking audience?</p>
+                                    <p class="question-block__answer">I know this means “one must learn to walk before
+                                        running”, but is there a less literal translation that is perhaps more appealing
+                                        to an English-speaking audience?</p>
                                     <div class="tranding-tags">
                                         <a href="#" class="tranding-tags__tag">computer</a>
-                                        <a href="#" class="tranding-tags__tag">computer</a> 
+                                        <a href="#" class="tranding-tags__tag">computer</a>
                                         <a href="#" class="tranding-tags__tag">computer</a>
                                         <a href="#" class="tranding-tags__tag">computer</a>
                                     </div>
@@ -132,10 +134,10 @@
                     <div class="answers-list">
                         <div class="answer-block">
                             <div class="answer-block__top">
-                                <div class="answer-block__question-block">  
+                                <div class="answer-block__question-block">
                                     <p class="qustion-meta-data">
                                         <span class="qustion-meta-data__meta-date">
-                                            Asked: 
+                                            Asked:
                                             <a href="#">April 19, 2018</a>
                                         </span>
                                         <span class="qustion-meta-data__byline">
@@ -144,28 +146,31 @@
                                         </span>
                                     </p>
                                     <p class="answer-block__question">
-                                        <a href="#">Why are the British confused about us calling bread rolls “biscuits” when they call bread rolls “puddings”?</a>
+                                        <a href="#">Why are the British confused about us calling bread rolls “biscuits”
+                                            when they call bread rolls “puddings”?</a>
                                     </p>
                                 </div>
                             </div>
-                            <div class="answer-block__bottom"> 
+                            <div class="answer-block__bottom">
                                 <div class="answer-block__avatar">
                                     <img src="{{ asset('img/avatar.jpg') }}" class="avatar-border" alt="avatar">
                                 </div>
                                 <div class="answer-block__content">
                                     <div class="user-info">
                                         <a href="#" class="user-info__author-name">Martin Hope</a>
-                                        <span class="user-info__author-badge">Explainer</span> 
+                                        <span class="user-info__author-badge">Explainer</span>
                                     </div>
                                     <p class="answer-block__meta">
                                         Added an answer on April 19, 2018 at 2:07 am
                                     </p>
                                     <p class="answer-block__answer">
-                                        It may be little things like not using native idioms, that you would pick up from living in the UK.
+                                        It may be little things like not using native idioms, that you would pick up
+                                        from living in the UK.
 
                                         But, hey. That’s just a guess.
 
-                                        Also, I don’t think I would’ve noticed you were foreign from what you wrote, if you didn’t point it o
+                                        Also, I don’t think I would’ve noticed you were foreign from what you wrote, if
+                                        you didn’t point it o
                                     </p>
                                     <div class="answer-block__action">
                                         <div class="answer-block__rating">
@@ -176,13 +181,11 @@
                                         <a href="#" class="answer-block__share">Share</a>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
                 </div>
-
-
 
 
             </div>
@@ -246,82 +249,85 @@
                                     <a href="#">5 answers</a>
                                 </p>
                             </div>
-                        <div class="popular-answer-item">
-                            
-                        </div>
-                    </div>
-                </div>
+                            <div class="popular-answer-item">
 
-                <div class="top-members-block">
-                    <h3 class="h3">Top Members</h3>
-                    <div class="top-members">
-                        <div class="member">
-                            <div class="member__avatar">
-                                <a href="#">
-                                    <img src="{{ asset('img/avatar.jpg') }}" class="avatar-border" alt="avatar">
-                                </a>
-                            </div>
-                            <div class="member__info">
-                                <p class="member__name">
-                                    <a class="member__link" href="#">Ahmed</a>
-                                </p>
-                                <div class="member__stats">
-                                    <p class="member__stat"><a class="member__link_grey" href="#">4 questions</a></p>
-                                    <p class="member__stat"><a class="member__link_grey" href="#">4 points</a></p> 
-                                </div>
-                                <p class="member__status">Enlighted</p>
-                            </div>
-                        </div>
-                        <div class="member">
-                            <div class="member__avatar">
-                                <a href="#">
-                                    <img src="{{ asset('img/avatar.jpg') }}" class="avatar-border" alt="avatar">
-                                </a>
-                            </div>
-                            <div class="member__info">
-                                <p class="member__name">
-                                    <a class="member__link" href="#">Ahmed</a>
-                                </p>
-                                <div class="member__stats">
-                                    <p class="member__stat"><a class="member__link_grey" href="#">4 questions</a></p>
-                                    <p class="member__stat"><a class="member__link_grey" href="#">4 points</a></p> 
-                                </div>
-                                <p class="member__status">Enlighted</p>
-                            </div>
-                        </div>
-                        <div class="member">
-                            <div class="member__avatar">
-                                <a href="#">
-                                    <img src="{{ asset('img/avatar.jpg') }}" class="avatar-border" alt="avatar">
-                                </a>
-                            </div>
-                            <div class="member__info">
-                                <p class="member__name">
-                                    <a class="member__link" href="#">Ahmed</a>
-                                </p>
-                                <div class="member__stats">
-                                    <p class="member__stat"><a class="member__link_grey" href="#">4 questions</a></p>
-                                    <p class="member__stat"><a class="member__link_grey" href="#">4 points</a></p> 
-                                </div>
-                                <p class="member__status">Enlighted</p>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="tranding-tags-block">
-                    <h3 class="h3">Tranding Tags</h3>
-                    <div class="tranding-tags">
-                        <a href="#" class="tranding-tags__tag">computer</a>
-                        <a href="#" class="tranding-tags__tag">computer</a>
-                        <a href="#" class="tranding-tags__tag">computer</a>
-                        <a href="#" class="tranding-tags__tag">computer</a>
-                        <a href="#" class="tranding-tags__tag">computer</a>
-                        <a href="#" class="tranding-tags__tag">computer</a>
-                        <a href="#" class="tranding-tags__tag">computer</a>
+                    <div class="top-members-block">
+                        <h3 class="h3">Top Members</h3>
+                        <div class="top-members">
+                            <div class="member">
+                                <div class="member__avatar">
+                                    <a href="#">
+                                        <img src="{{ asset('img/avatar.jpg') }}" class="avatar-border" alt="avatar">
+                                    </a>
+                                </div>
+                                <div class="member__info">
+                                    <p class="member__name">
+                                        <a class="member__link" href="#">Ahmed</a>
+                                    </p>
+                                    <div class="member__stats">
+                                        <p class="member__stat"><a class="member__link_grey" href="#">4 questions</a>
+                                        </p>
+                                        <p class="member__stat"><a class="member__link_grey" href="#">4 points</a></p>
+                                    </div>
+                                    <p class="member__status">Enlighted</p>
+                                </div>
+                            </div>
+                            <div class="member">
+                                <div class="member__avatar">
+                                    <a href="#">
+                                        <img src="{{ asset('img/avatar.jpg') }}" class="avatar-border" alt="avatar">
+                                    </a>
+                                </div>
+                                <div class="member__info">
+                                    <p class="member__name">
+                                        <a class="member__link" href="#">Ahmed</a>
+                                    </p>
+                                    <div class="member__stats">
+                                        <p class="member__stat"><a class="member__link_grey" href="#">4 questions</a>
+                                        </p>
+                                        <p class="member__stat"><a class="member__link_grey" href="#">4 points</a></p>
+                                    </div>
+                                    <p class="member__status">Enlighted</p>
+                                </div>
+                            </div>
+                            <div class="member">
+                                <div class="member__avatar">
+                                    <a href="#">
+                                        <img src="{{ asset('img/avatar.jpg') }}" class="avatar-border" alt="avatar">
+                                    </a>
+                                </div>
+                                <div class="member__info">
+                                    <p class="member__name">
+                                        <a class="member__link" href="#">Ahmed</a>
+                                    </p>
+                                    <div class="member__stats">
+                                        <p class="member__stat"><a class="member__link_grey" href="#">4 questions</a>
+                                        </p>
+                                        <p class="member__stat"><a class="member__link_grey" href="#">4 points</a></p>
+                                    </div>
+                                    <p class="member__status">Enlighted</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tranding-tags-block">
+                        <h3 class="h3">Tranding Tags</h3>
+                        <div class="tranding-tags">
+                            <a href="#" class="tranding-tags__tag">computer</a>
+                            <a href="#" class="tranding-tags__tag">computer</a>
+                            <a href="#" class="tranding-tags__tag">computer</a>
+                            <a href="#" class="tranding-tags__tag">computer</a>
+                            <a href="#" class="tranding-tags__tag">computer</a>
+                            <a href="#" class="tranding-tags__tag">computer</a>
+                            <a href="#" class="tranding-tags__tag">computer</a>
+                        </div>
                     </div>
                 </div>
-            </div>
             </aside>
         </div>
     </main>
@@ -362,14 +368,13 @@
                 <a href="#" class="footer__link">Blog</a>
                 <a href="#" class="footer__link">Blog</a>
             </div>
-            
+
         </div>
     </footer>
 {% endblock %}
 
-    <div class="copyright-block">
-        <p class="copyright">2021 Discy. All Right Reserved</p>
-    </div>
-    
+<div class="copyright-block">
+    <p class="copyright">2021 Discy. All Right Reserved</p>
+</div>
 </body>
 </html>

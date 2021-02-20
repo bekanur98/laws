@@ -13,6 +13,8 @@
 /.idea/.DS_Store
 /config/.DS_Store
 /src/.DS_Store
+.idea
+/.idea
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###

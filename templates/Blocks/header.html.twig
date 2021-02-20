@@ -1,0 +1,47 @@
+<header class="header-block">
+    <div class="header wrapper">
+        <div class="logo header__logo">
+            Stack LawyerFlow
+        </div>
+
+        <div class="nav">
+            <p class="nav__links">
+                <a href="{{ path('index') }}" class="nav__link">Home</a>
+                <a href="#" class="nav__link">About Us</a>
+                <a href="#" class="nav__link">Blog</a>
+                <a href="#" class="nav__link">Contact Us</a>
+            </p>
+            <ul>
+                <li>
+                    <a href="#">
+                        {% if app.request.getLocale == 'ky' %}
+                            Кыргызча
+                        {% elseif app.request.getLocale == 'ru' %}
+                            Русский
+                        {% endif %}
+                    </a>
+                    <ul>
+                        {% for language in languages %}
+                            <li><a class=" {% if currentlocale == language.localeCode %} active {% endif %}"
+                                   href="{{ app.request.basePath }}/setlocale/{{ language.localeCode }}">{{ language.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            </ul>
+            <div class="search-block">
+                <input type="search" class="search-block__input" placeholder="Type Search Words">
+                <button class="search-block__btn">Поиск</button>
+            </div>
+
+        </div>
+
+
+        <div class="login-block">
+            <a href="{{ path('app_login') }}" class="btn">Sign in</a>
+            <a href="{{ path('app_register') }}" class="btn">Sign up</a>
+        </div>
+    </div>
+</header>
+<main class="main">
+    <div class="main-wrapper wrapper">
