@@ -21,6 +21,13 @@ security:
             guard:
                 authenticators:
                     - App\Security\LoginFormAuthenticator
+            form_login:
+                login_path: /login
+                check_path: /login
+                provider: app_user_provider
+                csrf_token_generator: security.csrf.token_manager
+                csrf_parameter: _csrf_security_token
+                csrf_token_id: a_private_string
             logout:
                 path: app_logout
                 # where to redirect after logout

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use DateTime;
+use Doctrine\DBAL\Types\DateTimeType;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -23,7 +25,7 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", length=180)
      * @Assert\Email()
      */
     private $email;
@@ -40,12 +42,12 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=32)
+     * @ORM\Column(type="string", length=32, unique=true)
      */
     private $username;
 
     /**
-     * @ORM\Column(type="string", length=32,unique=true)
+     * @ORM\Column(type="string", length=32)
      */
     private $first_name;
 
@@ -65,12 +67,12 @@ class User implements UserInterface
     private $is_locked;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $confirmation_token;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $requested_at;
 
@@ -83,6 +85,16 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $law_licence_no;
+
+    /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+        $this->is_locked = true;
+        $this->requested_at = new DateTime();
+    }
+
 
     public function getId(): ?int
     {
@@ -108,7 +120,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return  $this->username;
     }
 
     /**

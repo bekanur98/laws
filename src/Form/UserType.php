@@ -23,32 +23,17 @@ class UserType extends AbstractType
     {
 
         $builder
-            ->add('id', HiddenType::class)
             ->add('email', EmailType::class)
-            ->add('password', RepeatedType::class, [
-                'type'=>PasswordType::class
+            ->add('password', PasswordType::class, [
+                'label' => 'Пароль'
             ])
             ->add('username', TextType::class)
             ->add('first_name')
             ->add('last_name')
             ->add('phone_number')
-            ->add('is_locked', HiddenType::class, [
-                'data'=>true
-            ])
-            ->add('confirmation_token', HiddenType::class, [
-                'data'=>'1'
-            ])
-//            ->add('requested_at', HiddenType::class, [
-//                'data'=>''
-//            ])
-            ->add('requested_at')
             ->add('is_lawyer')
             ->add('law_licence_no')
-            ->add('submit', SubmitType::class, [
-                'attr' => [
-                    'class' => 'btn btn-success pull-right'
-                ]
-            ]);
+            ;
 
     }
 

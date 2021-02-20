@@ -3,6 +3,8 @@
 
 {% form_theme signupForm 'bootstrap_4_layout.html.twig' %}
 
+
+{% block left_side %} {% endblock %}
 {% block body %}
 <body>
 <div class="panel panel-info">
@@ -11,9 +13,26 @@
 
     </div>
     <div class="panel-body">
-        {{ form(signupForm) }}
+
+        {{ form_start(signupForm) }}
+        {{ form_row(signupForm.username) }}
+        {{ form_row(signupForm.first_name) }}
+        {{ form_row(signupForm.last_name) }}
+        {{ form_row(signupForm.phone_number) }}
+        {{ form_row(signupForm.email) }}
+        {{ form_row(signupForm.password) }}
+
+        {{ form_row(signupForm.is_lawyer) }}
+        {{ form_row(signupForm.law_licence_no) }}
+        {{ form_row(signupForm.submit) }}
+
+        {{ form_end(signupForm) }}
     </div>
 
 </div>
 </body>
+
+{% endblock %}
+
+{% block rigth_side %}
 {% endblock %}

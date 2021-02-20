@@ -1,0 +1,24 @@
+{% extends 'Layouts/homepage.html.twig' %}
+{% block page_title %}Check email{% endblock %}
+
+{% block left_side %} {% endblock %}
+{% block body %}
+
+    <div class="col-md-offset-3 col-md-6">
+        <div class="box_style_2 m-t-20">
+            <h3 class="nomargin_top align-center"><i>Thank you!</i></h3>
+
+            <div id="confirm">
+                <i class="icon_check_alt2"></i>
+                <h3>Check your email!</h3>
+                <p>
+                    A letter with a confirmation link was sent to mail
+                    {{ email }}. Go by mail and click on the link to confirm registration
+                </p>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}
+
+{% block rigth_side %} {% endblock %}
