@@ -1,0 +1,42 @@
+<div class="form-wrapper">
+	<form method="post" class="form form_register"> 
+	    <h1 class="h3 mb-3 font-weight-normal">Зарегистрироваться</h1>
+		<label>
+			Имя
+			<input class="form__input form-control" type="text" name="firstName" placeholder="Имя" required>
+		</label>
+		<label>
+			Фамилия
+			<input class="form__input form-control" type="text" name="lastName" placeholder="Фамилия" required>
+		</label>
+		<label>
+			Ник
+			<input class="form__input form-control" type="text" name="username" placeholder="Ник" required>
+		</label>
+		<label>
+			Эл. Почта
+			<input class="form__input form-control" type="email" name="email" placeholder="Эл. Почта" required>
+		</label>
+		<label>
+			Номер телефона
+			<input class="form__input form-control" type="number" name="phoneNumber" placeholder="Номер телефона" required>
+		</label> 
+		<div class="form__radio-btns"> 
+			<label><input type="radio" name="isLaw">Юрист</label>
+			<label><input type="radio" name="isLaw">Обычный смертный</label>
+		</div>
+		<label>
+			Номер лицензии
+			<input class="form__input form-control" type="text" name="lawLicenseNo" placeholder="Номер лицензии" required>
+		</label>
+		<label>
+			Пароль
+			<input class="form__input form-control" type="password" name="password" placeholder="Пароль" required>
+		</label>
+		<label>
+			Повторите пароль
+			<input class="form__input form-control" type="password" name="passwordMatch" placeholder="Повторите пароль" required>
+		</label>
+		<button type="submit" class="btn">Зарегистрироваться</button>
+	</form>
+</div>
