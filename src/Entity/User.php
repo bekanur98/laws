@@ -87,12 +87,23 @@ class User implements UserInterface
     private $law_licence_no;
 
     /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $gender;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $law_rating;
+
+    /**
      * User constructor.
      */
     public function __construct()
     {
         $this->is_locked = true;
         $this->requested_at = new DateTime();
+        $this->law_rating = 0;
     }
 
 
@@ -273,6 +284,30 @@ class User implements UserInterface
     public function setLawLicenceNo(?string $law_licence_no): self
     {
         $this->law_licence_no = $law_licence_no;
+
+        return $this;
+    }
+
+    public function getGender(): ?bool
+    {
+        return $this->gender;
+    }
+
+    public function setGender(?bool $gender): self
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    public function getLawRating(): ?int
+    {
+        return $this->law_rating;
+    }
+
+    public function setLawRating(?int $law_rating): self
+    {
+        $this->law_rating = $law_rating;
 
         return $this;
     }

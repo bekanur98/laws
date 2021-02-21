@@ -30,6 +30,7 @@ class UserType extends AbstractType
             ->add('username', TextType::class)
             ->add('first_name')
             ->add('last_name')
+            ->add('gender')
             ->add('phone_number')
             ->add('is_lawyer')
             ->add('law_licence_no')
