@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\DateTimeType;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -87,12 +89,35 @@ class User implements UserInterface
     private $law_licence_no;
 
     /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $gender;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $law_rating;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Question::class, mappedBy="user")
+     */
+    private $questions;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Answer::class, mappedBy="user")
+     */
+    private $answers;
+
+    /**
      * User constructor.
      */
     public function __construct()
     {
         $this->is_locked = true;
         $this->requested_at = new DateTime();
+        $this->law_rating = 0;
+        $this->questions = new ArrayCollection();
+        $this->answers = new ArrayCollection();
     }
 
 
@@ -273,6 +298,90 @@ class User implements UserInterface
     public function setLawLicenceNo(?string $law_licence_no): self
     {
         $this->law_licence_no = $law_licence_no;
+
+        return $this;
+    }
+
+    public function getGender(): ?bool
+    {
+        return $this->gender;
+    }
+
+    public function setGender(?bool $gender): self
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    public function getLawRating(): ?int
+    {
+        return $this->law_rating;
+    }
+
+    public function setLawRating(?int $law_rating): self
+    {
+        $this->law_rating = $law_rating;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Question[]
+     */
+    public function getQuestions(): Collection
+    {
+        return $this->questions;
+    }
+
+    public function addQuestion(Question $question): self
+    {
+        if (!$this->questions->contains($question)) {
+            $this->questions[] = $question;
+            $question->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuestion(Question $question): self
+    {
+        if ($this->questions->removeElement($question)) {
+            // set the owning side to null (unless already changed)
+            if ($question->getUser() === $this) {
+                $question->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Answer[]
+     */
+    public function getAnswers(): Collection
+    {
+        return $this->answers;
+    }
+
+    public function addAnswer(Answer $answer): self
+    {
+        if (!$this->answers->contains($answer)) {
+            $this->answers[] = $answer;
+            $answer->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnswer(Answer $answer): self
+    {
+        if ($this->answers->removeElement($answer)) {
+            // set the owning side to null (unless already changed)
+            if ($answer->getUser() === $this) {
+                $answer->setUser(null);
+            }
+        }
 
         return $this;
     }
