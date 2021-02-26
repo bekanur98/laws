@@ -28,14 +28,20 @@ class FAQ
     private $answer_faq;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime")
      */
     private $created_at;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer")
      */
     private $views;
+
+    public function __construct()
+    {
+        $this->created_at = new \DateTime();
+        $this->views = 0;
+    }
 
     public function getId(): ?int
     {

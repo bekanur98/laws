@@ -40,7 +40,8 @@ class News
 
     public function __construct()
     {
-        $this->created_at = new DateTime();
+        $this->created_at = new \DateTime();
+        $this->views = 0;
     }
 
     public function getId(): ?int

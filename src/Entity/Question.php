@@ -46,7 +46,7 @@ class Question
     private $is_answered;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime")
      */
     private $created_at;
 
@@ -69,7 +69,7 @@ class Question
     public function __construct()
     {
         $this->is_answered = false;
-//        $this->created_at = new DateTime();
+        $this->created_at = new \DateTime();
         $this->tags = new ArrayCollection();
         $this->answers = new ArrayCollection();
     }
