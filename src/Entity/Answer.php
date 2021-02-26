@@ -25,7 +25,7 @@ class Answer
     private $answer_body;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $rating;
 
@@ -48,7 +48,7 @@ class Answer
 
     public function __construct()
     {
-        $this->created_at = new DateTime();
+//        $this->created_at = new DateTime();
     }
 
     public function getId(): ?int

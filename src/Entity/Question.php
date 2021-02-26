@@ -69,7 +69,7 @@ class Question
     public function __construct()
     {
         $this->is_answered = false;
-        $this->created_at = new DateTime();
+//        $this->created_at = new DateTime();
         $this->tags = new ArrayCollection();
         $this->answers = new ArrayCollection();
     }
@@ -218,5 +218,10 @@ class Question
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->title_question;
     }
 }
