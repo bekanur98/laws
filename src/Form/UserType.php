@@ -6,6 +6,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -30,7 +31,13 @@ class UserType extends AbstractType
             ->add('username', TextType::class)
             ->add('first_name')
             ->add('last_name')
-            ->add('gender')
+            ->add('gender', ChoiceType::class, [
+                'label' => 'Пол',
+                'choices' => [
+                    'Муж.' => true,
+                    'Жен.' => false
+                ]
+            ])
             ->add('phone_number')
             ->add('is_lawyer')
             ->add('law_licence_no')

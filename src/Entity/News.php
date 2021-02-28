@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use App\Repository\NewsRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints\DateTime;
+use \DateTime;
 
 /**
  * @ORM\Entity(repositoryClass=NewsRepository::class)
@@ -40,7 +40,7 @@ class News
 
     public function __construct()
     {
-        $this->created_at = new \DateTime();
+        $this->created_at = new DateTime();
         $this->views = 0;
     }
 

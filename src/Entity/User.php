@@ -11,11 +11,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
  * @UniqueEntity(fields={"email", "username"}, message="This one is already taken")
+ * @Vich\Uploadable()
  */
 class User implements UserInterface
 {
@@ -109,12 +111,49 @@ class User implements UserInterface
     private $answers;
 
     /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $thumbnail;
+
+    /**
+     * @Vich\UploadableField(mapping="thumbnails", fileNameProperty="thumbnail")
+     */
+
+    private $thumbnailFile;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
+
+    /**
+     * @return mixed
+     */
+    public function getThumbnailFile()
+    {
+        return $this->thumbnailFile;
+    }
+
+    /**
+     * @param mixed $thumbnailFile
+     */
+    public function setThumbnailFile($thumbnailFile): void
+    {
+        $this->thumbnailFile = $thumbnailFile;
+
+        if($thumbnailFile) {
+            $this->updatedAt = new \DateTime();
+        }
+    }
+
+    /**
      * User constructor.
      */
     public function __construct()
     {
         $this->is_locked = true;
         $this->requested_at = new DateTime();
+        $this->updatedAt = new \DateTime();
         $this->law_rating = 0;
         $this->questions = new ArrayCollection();
         $this->answers = new ArrayCollection();
@@ -389,5 +428,29 @@ class User implements UserInterface
     public function __toString()
     {
         return $this->username;
+    }
+
+    public function getThumbnail(): ?string
+    {
+        return $this->thumbnail;
+    }
+
+    public function setThumbnail(?string $thumbnail): self
+    {
+        $this->thumbnail = $thumbnail;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
     }
 }

@@ -95,4 +95,11 @@ class FAQ
 
         return $this;
     }
+
+    public function setCreatedAt(\DateTimeInterface $created_at): self
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
 }
