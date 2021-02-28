@@ -158,16 +158,27 @@ img {
 }
 
 
+.form-wrapper {
+	display: flex; 
+    justify-content: center; 
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    &_login {
+    	height: 100%;
+    }
+}
+
 .form {
 	display: flex;
 	max-width: 440px;
-	// width: 80%;
-	// display: grid;
-	// grid-template-columns: repeat(2, 1fr);
-	// grid-gap: 10px 20px;
+	width: 100%;
 	padding: 20px 40px;
     flex-direction: column;
     background: @light;
+    &_register {
+		height: 100%;
+    }
    	label {
    		cursor: pointer;
    		font-size: 0.8rem;
@@ -195,6 +206,14 @@ img {
        		margin: 0;
        		margin-right: 6px;
        	}
+    }
+    &__reset-link {
+    	margin-bottom: 10px;
+    	font-size: 0.75rem;
+    	text-align: right;
+    	a {
+	    	color: @light-blue;
+    	}
     } 
     &__btn {
     	display: flex;
