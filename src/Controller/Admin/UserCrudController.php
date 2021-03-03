@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -39,6 +40,8 @@ class UserCrudController extends AbstractCrudController
             Field::new('password', 'Password'),
             Field::new('is_lawyer', 'Is Lawyer?'),
             TextField::new('law_licence_no', 'Law Licence №'),
+            Field::new('is_locked', 'Is Locked?')->hideOnForm(),
+            DateField::new('updated_at')->hideOnForm(),
         ];
 
         if($pageName == Crud::PAGE_INDEX || $pageName == Crud::PAGE_DETAIL) {

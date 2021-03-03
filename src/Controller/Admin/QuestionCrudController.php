@@ -24,7 +24,7 @@ class QuestionCrudController extends AbstractCrudController
             TextField::new('title_question', 'Title'),
             TextEditorField::new('body_question', 'Content'),
             AssociationField::new('tags', 'Tags')->autocomplete(),
-            AssociationField::new('user', 'Username')->autocomplete(),
+            AssociationField::new('user', 'User')->autocomplete(),
         ];
     }
 }

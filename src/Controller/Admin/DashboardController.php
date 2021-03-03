@@ -25,7 +25,7 @@ class DashboardController extends AbstractDashboardController
     {
         $routeBuilder = $this->get(AdminUrlGenerator::class);
 
-        return $this->redirect($routeBuilder->setController(UserCrudController::class)->generateUrl());
+        return $this->redirect($routeBuilder->setController(QuestionCrudController::class)->generateUrl());
     }
 
     public function configureDashboard(): Dashboard
@@ -39,7 +39,7 @@ class DashboardController extends AbstractDashboardController
         return [
             MenuItem::linktoDashboard('Dashboard', 'fa fa-home'),
             MenuItem::section('All'),
-            MenuItem::linkToCrud('User', 'fa fa-user', User::class),
+            MenuItem::linkToCrud('User', 'fa fa-user', User::class)->setPermission("ROLE_ADMIN"),
             MenuItem::linkToCrud('Questions', 'fa fa-question-circle', Question::class),
             MenuItem::linkToCrud('Answers', 'fa fa-comments-o', Answer::class),
             MenuItem::linkToCrud('Tags', 'fa fa-tags', Tag::class),
