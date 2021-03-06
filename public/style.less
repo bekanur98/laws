@@ -751,3 +751,96 @@ img {
 
 // ------------- Footer --------------
 
+
+
+
+// ------------- News --------------
+
+.news-block {
+	text-align: center;
+}
+
+.news {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+	flex-wrap: wrap;
+	&__item {
+		margin: 30px 10px;
+		height: 100%;
+	}
+	&__img {
+		width: 100%;
+		margin-bottom: 20px;
+	}
+	&__date {
+		text-align: center;
+		font-size: 0.6rem;
+		margin-bottom: 15px;
+		color: @grey;
+	}
+	&__title {
+		text-align: center;
+		font-size: 1.2rem;
+		font-weight: bold;
+	}
+	&__descr {
+		height: 100%;
+	}
+}
+// ------------- News --------------
+
+
+
+
+// ------------- FAQ --------------
+
+.faq-block {
+	padding: 20px;
+}
+.faq {
+	padding: 20px 0 ;
+}
+
+.faq-question {
+	margin: 0 auto;
+	padding: 20px;
+	border: 1px solid #e1e3e3;
+	background-color: #f9f9f9;
+	margin-bottom: 20px;
+	&__top {
+		display: flex;
+		padding-bottom: 20px;
+	}
+	&__btn {
+		color: #fff;
+		background-color: #1A1C21;
+		margin-right: 15px;
+		width: 20px;
+		height: 20px;
+		border-radius: 3px;
+		font-size: 1rem;
+	}
+	&__question {
+		font-weight: bold;
+		font-size: 0.95rem;
+	}
+	// &__toggler:checked ~ .faq-question__bottom{
+	// 	display: block;
+	// }
+	// &__toggler:checked ~ .faq-question__top {
+	// }
+	&__toggler {
+		display: none;
+	}
+	&__bottom {
+		transition: visibility 0.4s ease-in;
+		overflow: hidden;
+		height: 0;
+		transition: height 0.5s;
+	}
+	&__answer {
+		color: #707885;
+		font-size: 0.8rem;
+		line-height: 1.6em;
+	}
+}
