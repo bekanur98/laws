@@ -21,6 +21,7 @@
             <a href="#" class="questions-tab__item">Answers</a>
             <a href="#" class="questions-tab__item">Most Visited</a>
         </div>
+        {% for qst in questions %}
         <div class="questions-list">
             <div class="question-block">
                 <div class="question-block__top">
@@ -42,9 +43,9 @@
                                             </span>
                             </p>
                         </div>
+
                         <p class="question-block__question">
-                            <a href="#">Is this statement, “i see him last night” can be understood as “I
-                                saw him last night”?</a>
+                            <a href="#">{{ qst.getTitleQuestion}}</a>
                         </p>
                     </div>
                 </div>
@@ -74,6 +75,7 @@
                 </div>
             </div>
         </div>
+        {% endfor %}
         <div class="answers-list">
             <div class="answer-block">
                 <div class="answer-block__top">
