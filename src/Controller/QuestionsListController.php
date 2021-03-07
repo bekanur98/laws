@@ -17,7 +17,7 @@ class QuestionsListController extends AbstractController {
         $repository = $this->getDoctrine()->getRepository(Question::class);
         $questions = $repository->findAll();
 
-        return $this->render('Default/home.html.twig', ['questions' => $questions]);
+        return $this->render('Blocks/questions.html.twig', ['questions' => $questions]);
     }
 }
 

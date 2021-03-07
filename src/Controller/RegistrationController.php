@@ -71,10 +71,11 @@ class RegistrationController extends AbstractController
 
             $this->addFlash('success', 'Yayy! Successfully registrated');
 
+            return $this->redirectToRoute('showList');
 
-            return $this->render('Default/home.html.twig', [
-                'email' => $user->getEmail()
-            ]);
+//            return $this->render('Default/home.html.twig', [
+//                'email' => $user->getEmail()
+//            ]);
 
         }
 
