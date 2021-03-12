@@ -1,4 +1,4 @@
-{% extends 'Default/home.html.twig' %}
+{% extends "Default/home.html.twig" %}
 
 {% block questions %}
     {% for qst in questions %}
@@ -15,7 +15,7 @@
                             <p class="qustion-meta-data">
                                                 <span class="qustion-meta-data__meta-date">
                                                     Asked:
-                                                    <a href="#">{{ qst.getCreatedAt | date('d-m-Y')}}</a>
+                                                    <a href="#">April 19, 2018</a>
                                                 </span>
                                 <span class="qustion-meta-data__byline">
                                                     In:
