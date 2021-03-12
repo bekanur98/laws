@@ -1,0 +1,7 @@
+{% extends 'Blocks/lawyers.html.twig' %}
+
+{% block lawyersList %}
+    {% for lawyer in lawyers %}
+        {{ lawyer.getUsername }} <br>
+    {% endfor %}
+{% endblock %}

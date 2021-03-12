@@ -36,6 +36,26 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
+    public function findLawyersByAlph()
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.is_lawyer = true')
+            ->orderBy('u.username', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findLawyersByRegTime()
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.is_lawyer = true')
+            ->orderBy('u.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

@@ -1,0 +1,7 @@
+{% extends 'Blocks/lawyers.html.twig' %}
+
+{% block lawyersList %}
+    {% for lawyer in lawyers %}
+        {{ lawyer.getUsername }} -> Registered at {{ lawyer.getCreatedAt | date('F j, Y, g:i a') }} <br>
+    {% endfor %}
+{% endblock %}

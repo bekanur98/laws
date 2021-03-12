@@ -127,6 +127,11 @@ class User implements UserInterface
     private $updatedAt;
 
     /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
      * @return mixed
      */
     public function getThumbnailFile()
@@ -154,6 +159,9 @@ class User implements UserInterface
         $this->is_locked = true;
         $this->requested_at = new DateTime();
         $this->updatedAt = new \DateTime();
+        if($this->getCreatedAt() == null) {
+            $this->createdAt = new \DateTime();
+        }
         $this->law_rating = 0;
         $this->questions = new ArrayCollection();
         $this->answers = new ArrayCollection();
@@ -450,6 +458,18 @@ class User implements UserInterface
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $this->createdAt;
 
         return $this;
     }
