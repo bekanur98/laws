@@ -23,8 +23,8 @@ class QuestionCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             TextField::new('title_question', 'Title'),
             TextEditorField::new('body_question', 'Content'),
-            AssociationField::new('tags', 'Tags')->autocomplete(),
-            AssociationField::new('user', 'User')->autocomplete(),
+            AssociationField::new('tags', 'Tags'),
+            AssociationField::new('user', 'User'),
         ];
     }
 }

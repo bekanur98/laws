@@ -1,24 +1,19 @@
 <?php
-
 namespace App\Controller;
 
 use App\Entity\Question;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
 
-class QuestionsListController extends AbstractController {
-
+class QuestionsAnsweredController extends AbstractController {
     /**
-     * @Route("/show", name="showList")
+     * @Route("/answered_questions", name="answeredQuestions")
      */
-    public function showList() {
+    public function showAnsweredQuestions() {
         $repository = $this->getDoctrine()->getRepository(Question::class);
         $questions = $repository->findAll();
 
-        return $this->render('Blocks/questions.html.twig', array('questions'=>$questions));
+        return $this->render('Blocks/questions_answered.html.twig', ['questions'=>$questions]);
     }
 }
-
 ?>

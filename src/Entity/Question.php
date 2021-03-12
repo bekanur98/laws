@@ -193,7 +193,7 @@ class Question
     /**
      * @return Collection|Answer[]
      */
-    public function getAnswers(): Collection
+    public function getAnswers()
     {
         return $this->answers;
     }
