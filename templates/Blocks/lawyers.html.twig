@@ -6,7 +6,7 @@
     <div class="questions-block">
         <div class="questions-tab">
             <a href="{{ path('lawyersAlph') }}" class="questions-tab__item">Alphabetical order</a>
-            <a href="#" class="questions-tab__item">Rating order</a>
+            <a href="{{ path('lawyersByRating') }}" class="questions-tab__item">Rating order</a>
             <a href="{{ path('lawyersReg') }}" class="questions-tab__item">Registration time order</a>
         </div>
         {% block lawyersList %}
