@@ -168,6 +168,9 @@
             "config/packages/sensio_framework_extra.yaml"
         ]
     },
+    "snilius/twig-sort-by-field": {
+        "version": "v0.1.5"
+    },
     "sonata-project/admin-bundle": {
         "version": "4.0",
         "recipe": {

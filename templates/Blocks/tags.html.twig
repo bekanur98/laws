@@ -1,0 +1,9 @@
+{% extends "Default/home.html.twig" %}
+
+{% block body %}
+
+{% for tag in tags | sortbyfield('name') %}
+    {{ tag.getName }} <br>
+{% endfor %}
+
+{% endblock %}

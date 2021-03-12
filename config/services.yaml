@@ -46,3 +46,8 @@ services:
     App\Controller\RegistrationController:
         public: true
         tags: ['controller.service_arguments']
+
+    twig.extension.sortbyfield:
+        class: Snilius\Twig\SortByFieldExtension
+        tags:
+            - { name: twig.extension }

@@ -25,7 +25,7 @@ class Tag
     private $name;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer")
      */
     private $amount;
 
@@ -36,6 +36,7 @@ class Tag
 
     public function __construct()
     {
+        $this->amount = 0;
         $this->question = new ArrayCollection();
     }
 

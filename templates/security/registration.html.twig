@@ -1,10 +1,10 @@
 {% extends 'Layouts/homepage.html.twig' %}
 {% block page_title %}Registration page{% endblock %}
 
-{% form_theme signupForm 'bootstrap_4_layout.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
 
 
-{% block left_side %} {% endblock %}
+{#{% block left_side %} {% endblock %}#}
 {% block body %}
 <body>
 <div class="panel panel-info">
@@ -12,28 +12,67 @@
         <h3 class="text-center">Register</h3>
 
     </div>
-    <div class="panel-body">
+    {{ form_start(form) }}
+    <div class="form-wrapper">
+{#        <form method="post" class="form form_register">#}
+{#            <h1 class="h3 mb-3 font-weight-normal">Зарегистрироваться</h1>#}
+            {{ form_row(form.first_name, {'attr': {'placeholder' : 'Имя', 'class': 'form__input form-control', 'type': 'text', 'required': 'required'}}) }}
+            {{ form_row(form.last_name, {'attr': {'placeholder' : 'Фамилия', 'class': 'form__input form-control', 'type': 'text', 'required': 'required'}}) }}
+            {{ form_row(form.username, {'attr': {'placeholder' : 'Ник', 'class': 'form__input form-control', 'type': 'text', 'required': 'required'}}) }}
+            {{ form_row(form.email, {'attr': {'placeholder' : 'Эл. Почта', 'class': 'form__input form-control', 'type': 'email', 'required': 'required'}}) }}
+            {{ form_row(form.phone_number, {'attr': {'placeholder' : 'Номер телефона', 'class': 'form__input form-control', 'type': 'number', 'required': 'required'}}) }}
+            {{ form_row(form.is_lawyer, {'attr': {'class': 'form__input form-control'}}) }}
+            {{ form_row(form.gender, {'attr': {'class': 'form__input form-control'}}) }}
+            {{ form_row(form.law_licence_no, {'attr': {'placeholder' : 'Номер лицензии', 'class': 'form__input form-control', 'type': 'text'}}) }}
+            {{ form_row(form.password, {'attr': {'placeholder' : 'Пароль', 'class': 'form__input form-control', 'type': 'password'}}) }}
+            {{ form_row(form.submit, {'attr': {'class': 'btn', 'type': 'submit'}}) }}
 
-        {{ form_start(signupForm) }}
-        {{ form_row(signupForm.username) }}
-        {{ form_row(signupForm.first_name) }}
-        {{ form_row(signupForm.last_name) }}
-        {{ form_row(signupForm.gender) }}
-        {{ form_row(signupForm.phone_number) }}
-        {{ form_row(signupForm.email) }}
-        {{ form_row(signupForm.password) }}
-
-        {{ form_row(signupForm.is_lawyer) }}
-        {{ form_row(signupForm.law_licence_no) }}
-        {{ form_row(signupForm.submit) }}
-
-        {{ form_end(signupForm) }}
+            {#            <label>#}
+{#                Имя#}
+{#                <input class="form__input form-control" id="form_first_name" name="form[first_name]" type="text" placeholder="Имя" required>#}
+{#            </label>#}
+{#            <label>#}
+{#                Фамилия#}
+{#                <input class="form__input form-control" id="form_last_name" name="form[last_name]" type="text" placeholder="Фамилия" required>#}
+{#            </label>#}
+{#            <label>#}
+{#                Ник#}
+{#                <input class="form__input form-control" id="form_username" name="form[username]" type="text" placeholder="Ник" required>#}
+{#            </label>#}
+{#            <label>#}
+{#                Эл. Почта#}
+{#                <input class="form__input form-control" id="form_email" name="form[email]" type="email" placeholder="Эл. Почта" required>#}
+{#            </label>#}
+{#            <label>#}
+{#                Номер телефона#}
+{#                <input class="form__input form-control" id="form_phone_number" name="form[phone_number]" type="number" placeholder="Номер телефона" required>#}
+{#            </label>#}
+{#            <div class="form__radio-btns">#}
+{#                <label><input type="radio" id="form_is_lawyer" name="form[is_lawyer]">Юрист</label>#}
+{#                <label><input type="radio" name="isLaw">Обычный смертный</label>#}
+{#            </div>#}
+{#            <label>#}
+{#                Номер лицензии#}
+{#                <input class="form__input form-control" id="form_law_licence_no" name="form[law_licence_no]" type="text" placeholder="Номер лицензии" required>#}
+{#            </label>#}
+{#            <label>#}
+{#                Пароль#}
+{#                <input class="form__input form-control" id="form_password" name="form[password]" type="password" placeholder="Пароль" required>#}
+{#            </label>#}
+{#            <label>#}
+{#                Повторите пароль#}
+{#                <input class="form__input form-control" type="password" name="passwordMatch" placeholder="Повторите пароль" required>#}
+{#                {{ form_row(form.password) }}#}
+{#            </label>#}
+{#            <button type="submit" id="form_submit" name="form[submit]" class="btn">Зарегистрироваться</button>#}
+{#        </form>#}
     </div>
+    {{ form_end(form) }}
 
 </div>
 </body>
 
 {% endblock %}
 
-{% block rigth_side %}
-{% endblock %}
+{#{% block rigth_side %}#}
+{#{% endblock %}#}
