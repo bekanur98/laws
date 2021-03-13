@@ -10,7 +10,7 @@
                     </div>
                     <div class="question-block__header">
                         <div class="user-info">
-                            <a href="#" class="user-info__author-name">Martin Hope</a>
+                            <a href="#" class="user-info__author-name">{{ qst.getUser }}</a>
                             <span class="user-info__author-badge">Explainer</span>
                             <p class="qustion-meta-data">
                                                 <span class="qustion-meta-data__meta-date">
@@ -55,7 +55,13 @@
                                                         {{ qst.getAnswers|length }} Answers
                                                     {% endif %}</a>
                                             </span>
-                            <span class="question-block__views">80 Views</span>
+                            <span class="question-block__views">
+                                {% if qst.getViews|length < 2 %}
+                                    {{ qst.getViews }} View
+                                {% else %}
+                                    {{ qst.getViews }} Views
+                                {% endif %}
+                            </span>
                         </p>
                     </div>
                 </div>

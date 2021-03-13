@@ -29,6 +29,16 @@ class QuestionRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findTop5Visited()
+    {
+        return $this->createQueryBuilder('q')
+            ->orderBy('q.views', 'DESC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Question[] Returns an array of Question objects
     //  */

@@ -56,7 +56,13 @@
                                                             {{ qst.getAnswers|length }} Answers
                                                         {% endif %}</a>
                                                 </span>
-                                <span class="question-block__views">80 Views</span>
+                                <span class="question-block__views">
+                                    {% if qst.getViews|length < 2 %}
+                                        {{ qst.getViews }} View
+                                    {% else %}
+                                        {{ qst.getViews }} Views
+                                    {% endif %}
+                                </span>
                             </p>
                         </div>
                     </div>

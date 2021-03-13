@@ -69,13 +69,7 @@ class RegistrationController extends AbstractController
             $em->persist($user);
             $em->flush();
 
-            $this->addFlash('success', 'Yayy! Successfully registrated');
-
             return $this->redirectToRoute('showList');
-
-//            return $this->render('Default/home.html.twig', [
-//                'email' => $user->getEmail()
-//            ]);
 
         }
 

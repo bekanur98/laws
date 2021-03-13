@@ -31,17 +31,17 @@ class Question
     private $body_question;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer")
      */
     private $views;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer")
      */
     private $rating;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="boolean")
      */
     private $is_answered;
 
@@ -72,6 +72,8 @@ class Question
         $this->created_at = new \DateTime();
         $this->tags = new ArrayCollection();
         $this->answers = new ArrayCollection();
+        $this->setViews(0);
+        $this->setRating(0);
     }
 
     public function getId(): ?int
@@ -166,7 +168,7 @@ class Question
     /**
      * @return Collection|Tag[]
      */
-    public function getTags(): Collection
+    public function getTags()
     {
         return $this->tags;
     }
