@@ -1,0 +1,73 @@
+{% extends 'Default/home.html.twig' %}
+
+{% block body %}
+    <div class="questions-list">
+        <div class="question-block">
+            <div class="question-block__top">
+                <div class="question-block__avatar">
+                    <img src="{{ asset('img/avatar.jpg') }}" class="avatar-border" alt="avatar">
+                </div>
+                <div class="question-block__header">
+                    <div class="user-info">
+                        <a href="#" class="user-info__author-name">{{ qst.getUser }}</a>
+                        <span class="user-info__author-badge">Explainer</span>
+                        <p class="qustion-meta-data">
+                                                <span class="qustion-meta-data__meta-date">
+                                                    Asked:
+                                                    <a href="#">{{ qst.getCreatedAt | date('F j, Y, g:i a')}}</a>
+                                                </span>
+                            <span class="qustion-meta-data__byline">
+                                                    In:
+                                                    <a href="#">Language</a>
+                                                </span>
+                        </p>
+                    </div>
+
+                    <p class="question-block__question">
+                        <a href="#">{{ qst.getTitleQuestion}}</a>
+                    </p>
+                    <p class="question-block__question">
+                        <p>{{ qst.getBodyQuestion}}</p>
+                    </p>
+                </div>
+            </div>
+            <div class="question-block__bottom">
+                <div class="question-block__rating">
+                    <p class="vote-up"></p>
+                    <p class="vote-result">62</p>
+                    <p class="vote-bottom"></p>
+                </div>
+                <div class="question-block__content">
+                    <p class="question-block__answer">
+                        {% for ans in qst.getAnswers %}
+                            {{ ans.getAnswerBody }}
+                        {% endfor %}</p>
+                    <div class="tranding-tags">
+                        <a href="#" class="tranding-tags__tag">computer</a>
+                        <a href="#" class="tranding-tags__tag">computer</a>
+                        <a href="#" class="tranding-tags__tag">computer</a>
+                        <a href="#" class="tranding-tags__tag">computer</a>
+                    </div>
+                    <p class="question-block__footer">
+                                            <span class="question-block__best-answers">
+                                                <a href="#">
+                                                    {% if qst.getAnswers|length < 2 %}
+                                                        {{ qst.getAnswers|length }} Answer
+                                                    {% else %}
+                                                        {{ qst.getAnswers|length }} Answers
+                                                    {% endif %}</a>
+                                            </span>
+                        <span class="question-block__views">
+                                {% if qst.getViews|length < 2 %}
+                                    {{ qst.getViews }} View
+                                {% else %}
+                                    {{ qst.getViews }} Views
+                                {% endif %}
+                            </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
