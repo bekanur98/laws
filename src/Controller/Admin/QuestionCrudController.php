@@ -23,7 +23,10 @@ class QuestionCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             TextField::new('title_question', 'Title'),
             TextEditorField::new('body_question', 'Content'),
-            AssociationField::new('tags', 'Tags'),
+            AssociationField::new('tags', 'Tags')
+                ->setFormTypeOptions([
+                    'by_reference' => false,
+                ]),
             AssociationField::new('user', 'User'),
         ];
     }

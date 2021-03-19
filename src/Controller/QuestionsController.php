@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 class QuestionsController extends AbstractController {
 
     /**
-     * @Route("/show", name="showList")
+     * @Route("/questions", name="showList")
      */
     public function showList() {
         $entityManager = $this->getDoctrine()->getManager();
@@ -29,7 +29,7 @@ class QuestionsController extends AbstractController {
     }
 
     /**
-     * @Route("/new_questions", name="newQuestions")
+     * @Route("/questions/new", name="newQuestions")
      */
     public function showNewQuestions() {
         $entityManager = $this->getDoctrine()->getManager();
@@ -47,7 +47,7 @@ class QuestionsController extends AbstractController {
     }
 
     /**
-     * @Route("/answered_questions", name="answeredQuestions")
+     * @Route("/questions/answered", name="answeredQuestions")
      */
     public function showAnsweredQuestions() {
         $entityManager = $this->getDoctrine()->getManager();
@@ -63,13 +63,13 @@ class QuestionsController extends AbstractController {
             $entityManager->flush();
         }
 
-        //ответы почему-то показывает с html тэгами, исправлю позже
+        //ответы и body of question почему-то показывает с html тэгами, исправлю позже
 
         return $this->render('Layouts/questions/questions_answered.html.twig', ['questions'=>$questions]);
     }
 
     /**
-     * @Route("/unanswered_questions", name="notAnsweredQuestions")
+     * @Route("/questions/unanswered", name="notAnsweredQuestions")
      */
     public function showNotAnsweredQuestions() {
         $entityManager = $this->getDoctrine()->getManager();
@@ -89,7 +89,7 @@ class QuestionsController extends AbstractController {
     }
 
     /**
-     * @Route("/most_visited/questions", name="mostVisitedQuestions")
+     * @Route("/questions/most_visited", name="mostVisitedQuestions")
      */
     public function showMostVisitedQuestions() {
         $entityManager = $this->getDoctrine()->getManager();

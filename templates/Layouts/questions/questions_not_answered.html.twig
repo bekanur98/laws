@@ -11,7 +11,7 @@
                         </div>
                         <div class="question-block__header">
                             <div class="user-info">
-                                <a href="#" class="user-info__author-name">Martin Hope</a>
+                                <a href="#" class="user-info__author-name">{{ qst.getUser }}</a>
                                 <span class="user-info__author-badge">Explainer</span>
                                 <p class="qustion-meta-data">
                                                     <span class="qustion-meta-data__meta-date">
@@ -38,14 +38,12 @@
                         </div>
                         <div class="question-block__content">
                             <p class="question-block__answer">
-                                {% for ans in qst.getAnswers %}
-                                    {{ ans.getAnswerBody }}
-                                {% endfor %}</p>
+                                {{ qst.getBodyQuestion }}
+                            </p><br>
                             <div class="tranding-tags">
-                                <a href="#" class="tranding-tags__tag">computer</a>
-                                <a href="#" class="tranding-tags__tag">computer</a>
-                                <a href="#" class="tranding-tags__tag">computer</a>
-                                <a href="#" class="tranding-tags__tag">computer</a>
+                                {% for tag in qst.getTags %}
+                                    <a href="#" class="tranding-tags__tag">{{ tag.getName }}</a>
+                                {% endfor %}
                             </div>
                             <p class="question-block__footer">
                                                 <span class="question-block__best-answers">

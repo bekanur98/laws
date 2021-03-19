@@ -17,8 +17,8 @@
         <div class="questions-tab">
             <a href="{{ path('newQuestions') }}" class="questions-tab__item">Recent Questions</a>
             <a href="#" class="questions-tab__item">Most Answered</a>
-            <a href="#" class="questions-tab__item">Bomp Questions</a>
-            <a href="#" class="questions-tab__item">Answers</a>
+            <a href="{{ path('answeredQuestions') }}" class="questions-tab__item">Answered</a>
+            <a href="{{ path('notAnsweredQuestions') }}" class="questions-tab__item">Not Answered</a>
             <a href="{{ path('mostVisitedQuestions') }}" class="questions-tab__item">Most Visited</a>
         </div>
         {% block questions %}
