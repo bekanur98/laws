@@ -6,6 +6,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -24,13 +25,15 @@ class UserType extends AbstractType
     {
 
         $builder
-            ->add('email', EmailType::class)
-            ->add('password', PasswordType::class, [
-                'label' => 'Пароль'
-            ])
-            ->add('username', TextType::class)
-            ->add('first_name')
-            ->add('last_name')
+            ->add('email', EmailType::class, ['label' => 'Эл. почта'])
+            ->add('password', RepeatedType::class, array(
+                'type' => PasswordType::class,
+                'first_options' => array('label' => 'Пароль'),
+                'second_options' => array('label' => 'Повторите пароль'),
+            ))
+            ->add('username', TextType::class, ['label' => 'Ник'])
+            ->add('first_name', TextType::class, ['label' => 'Имя'])
+            ->add('last_name', TextType::class, ['label' => 'Фамилия'])
             ->add('gender', ChoiceType::class, [
                 'label' => 'Пол',
                 'choices' => [
@@ -38,11 +41,10 @@ class UserType extends AbstractType
                     'Жен.' => false
                 ]
             ])
-            ->add('phone_number')
-            ->add('is_lawyer')
-            ->add('law_licence_no')
-            ;
-
+            ->add('phone_number', TextType::class, ['label' => 'Номер телефона'])
+            ->add('is_lawyer', CheckboxType::class, ['label' => 'Юрист'])
+            ->add('law_licence_no', TextType::class, ['label' => 'Номер лицензии'])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
