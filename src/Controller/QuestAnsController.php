@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class QuestAnsController extends AbstractController {
 
     /**
-     * @Route("/questions/{id}", name="showQA")
+     * @Route("/question/{id}", name="showQA")
      */
     public function showQA(int $id) {
         $repository = $this->getDoctrine()->getRepository(Question::class);

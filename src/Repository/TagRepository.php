@@ -19,6 +19,16 @@ class TagRepository extends ServiceEntityRepository
         parent::__construct($registry, Tag::class);
     }
 
+    public function findTrendingTags()
+    {
+        return $this->createQueryBuilder('t')
+            ->orderBy('t.amount', 'DESC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Tag[] Returns an array of Tag objects
     //  */

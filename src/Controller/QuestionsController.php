@@ -63,8 +63,6 @@ class QuestionsController extends AbstractController {
             $entityManager->flush();
         }
 
-        //ответы и body of question почему-то показывает с html тэгами, исправлю позже
-
         return $this->render('Layouts/questions/questions_answered.html.twig', ['questions'=>$questions]);
     }
 
