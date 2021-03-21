@@ -38,7 +38,7 @@
                         </div>
                         <div class="question-block__content">
                             <p class="question-block__answer">
-                                {{ qst.getBodyQuestion }}
+                                {{ qst.getBodyQuestion | striptags }}
                             </p><br>
                             <div class="tranding-tags">
                                 {% for tag in qst.getTags %}

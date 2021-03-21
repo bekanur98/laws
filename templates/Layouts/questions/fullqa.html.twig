@@ -26,9 +26,6 @@
                     <p class="question-block__question">
                         <a href="#">{{ qst.getTitleQuestion}}</a>
                     </p>
-                    <p class="question-block__question">
-                        <p>{{ qst.getBodyQuestion|raw }}</p>
-                    </p>
                 </div>
             </div>
             <div class="question-block__bottom">
@@ -38,8 +35,13 @@
                     <p class="vote-bottom"></p>
                 </div>
                 <div class="question-block__content">
+                    <p class="question-block__content">
+                        {{ qst.getBodyQuestion | striptags }}
+                    </p><br><br>
                     <p class="question-block__answer">
-                        {{ qst.getBodyQuestion }}
+                        {% for ans in qst.getAnswers %}
+                            {{ ans.getAnswerBody | striptags }}
+                        {% endfor %}
                     </p><br>
                     <div class="tranding-tags">
                         {% for tag in qst.getTags %}
