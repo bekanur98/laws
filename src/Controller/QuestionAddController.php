@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Answer;
 use App\Entity\Question;
+use App\Form\AnswerType;
 use App\Form\QuestionType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -50,6 +52,40 @@ class QuestionAddController extends AbstractController {
         }
 
         return $this->render('Layouts/questions/question_ask.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
+
+    /**
+     * @Route("/questions/answer/{id}", name="answer_question")
+     * @param Request $request
+     * @return Response
+     */
+
+    public function answerToQuestion(EntityManagerInterface $entityManager, Request $request, $id) {
+
+        $answer = new Answer();
+        $form = $this->createForm(AnswerType::class, $answer);
+
+        $answer->setUser($this->security->getUser());
+        $question = $entityManager->getRepository(Question::class)->find($id);
+        $answer->setQuestion($question);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            /**
+             * @var Answer ans
+             */
+            $ans = $form->getData();
+
+            $entityManager->persist($ans);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('showQA', ['id' => $id]);
+        }
+
+        return $this->render('Layouts/questions/ans_to_question.html.twig', array(
             'form' => $form->createView()
         ));
     }

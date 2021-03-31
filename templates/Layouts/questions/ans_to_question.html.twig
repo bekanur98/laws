@@ -1,0 +1,13 @@
+{% extends 'Layouts/homepage.html.twig' %}
+{% block page_title %} Ask Question {% endblock %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+    {{ form_row(form.answer_body) }}
+
+    {{ form_row(form.submit) }}
+
+    {{ form_end(form) }}
+
+{% endblock %}

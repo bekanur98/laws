@@ -46,7 +46,7 @@
                         </div>
                         <p class="question-block__footer">
                                             <span class="question-block__best-answers">
-                                                <a href="#">
+                                                <a href="{{ path('answer_question', {'id': qst.getId}) }}">
                                                     {% if qst.getAnswers|length < 2 %}
                                                         {{ qst.getAnswers|length }} Answer
                                                     {% else %}
