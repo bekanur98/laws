@@ -32,9 +32,9 @@
                     </div>
                     <div class="question-block__bottom">
                         <div class="question-block__rating">
-                            <p class="vote-up"></p>
-                            <p class="vote-result">62</p>
-                            <p class="vote-bottom"></p>
+                            <a href="{{ path('ratingUpdate', {'id': qst.getId, 'like': 1}) }}"><p class="vote-up"></p></a>
+                            <p class="vote-result">{{ qst.getRating }}</p>
+                            <a href="{{ path('ratingUpdate', {'id': qst.getId, 'like': 1}) }}"><p class="vote-bottom"></p></a>
                         </div>
                         <div class="question-block__content">
                             <p class="question-block__answer">

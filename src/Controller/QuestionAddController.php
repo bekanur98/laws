@@ -30,30 +30,35 @@ class QuestionAddController extends AbstractController {
 
     public function createQuestion(EntityManagerInterface $entityManager, Request $request) {
 
-        $question = new Question();
-        $form = $this->createForm(QuestionType::class, $question);
-
-        $question->setUser($this->security->getUser());
-
-        $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid()) {
-            /**
-             * @var Question ques
-             */
-            $ques = $form->getData();
-
-            $entityManager->persist($ques);
-            $entityManager->flush();
-
-            $this->addFlash('success', 'Question successfully created!');
-
-            return $this->redirectToRoute('newQuestions');
+        if(!$this->security->getUser()) {
+            return $this->redirectToRoute('app_login');
         }
+        else {
+            $question = new Question();
+            $form = $this->createForm(QuestionType::class, $question);
 
-        return $this->render('Layouts/questions/question_ask.html.twig', array(
-            'form' => $form->createView()
-        ));
+            $question->setUser($this->security->getUser());
+
+            $form->handleRequest($request);
+
+            if($form->isSubmitted() && $form->isValid()) {
+                /**
+                 * @var Question ques
+                 */
+                $ques = $form->getData();
+
+                $entityManager->persist($ques);
+                $entityManager->flush();
+
+                $this->addFlash('success', 'Question successfully created!');
+
+                return $this->redirectToRoute('newQuestions');
+            }
+
+            return $this->render('Layouts/questions/question_ask.html.twig', array(
+                'form' => $form->createView()
+            ));
+        }
     }
 
     /**
@@ -63,31 +68,35 @@ class QuestionAddController extends AbstractController {
      */
 
     public function answerToQuestion(EntityManagerInterface $entityManager, Request $request, $id) {
-
-        $answer = new Answer();
-        $form = $this->createForm(AnswerType::class, $answer);
-
-        $answer->setUser($this->security->getUser());
-        $question = $entityManager->getRepository(Question::class)->find($id);
-        $answer->setQuestion($question);
-
-        $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid()) {
-            /**
-             * @var Answer ans
-             */
-            $ans = $form->getData();
-
-            $entityManager->persist($ans);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('showQA', ['id' => $id]);
+        if(!$this->security->getUser()) {
+            return $this->redirectToRoute('app_login');
         }
+        else {
+            $answer = new Answer();
+            $form = $this->createForm(AnswerType::class, $answer);
 
-        return $this->render('Layouts/questions/ans_to_question.html.twig', array(
-            'form' => $form->createView()
-        ));
+            $answer->setUser($this->security->getUser());
+            $question = $entityManager->getRepository(Question::class)->find($id);
+            $answer->setQuestion($question);
+
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                /**
+                 * @var Answer ans
+                 */
+                $ans = $form->getData();
+
+                $entityManager->persist($ans);
+                $entityManager->flush();
+
+                return $this->redirectToRoute('showQA', ['id' => $id]);
+            }
+
+            return $this->render('Layouts/questions/ans_to_question.html.twig', array(
+                'form' => $form->createView()
+            ));
+        }
     }
 }
 

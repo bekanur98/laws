@@ -1,8 +1,6 @@
 <aside class="sidebar main-stat">
     <div class="ask-btn-block">
-        <a href="{{ path("add_question") }}">
-        <button class="btn">Ask a question</button>
-        </a>
+        <a href="{{ path('add_question') }}" class="btn" style="text-align:center">Ask a question</a>
     </div>
     <div class="answer-stats-block">
         <div class="answer-stats">
@@ -68,60 +66,26 @@
         <div class="top-members-block">
             <h3 class="h3">Top Members</h3>
             <div class="top-members">
-                <div class="member">
-                    <div class="member__avatar">
-                        <a href="#">
-                            <img src="{{ asset('img/avatar.jpg') }}" class="avatar-border" alt="avatar">
-                        </a>
-                    </div>
-                    <div class="member__info">
-                        <p class="member__name">
-                            <a class="member__link" href="#">Ahmed</a>
-                        </p>
-                        <div class="member__stats">
-                            <p class="member__stat"><a class="member__link_grey" href="#">4 questions</a>
-                            </p>
-                            <p class="member__stat"><a class="member__link_grey" href="#">4 points</a></p>
+                {% for l in lawyers %}
+                    <div class="member">
+                        <div class="member__avatar">
+                            <a href="#">
+                                <img src="{{ asset('img/avatar.jpg') }}" class="avatar-border" alt="avatar">
+                            </a>
                         </div>
-                        <p class="member__status">Enlighted</p>
-                    </div>
-                </div>
-                <div class="member">
-                    <div class="member__avatar">
-                        <a href="#">
-                            <img src="{{ asset('img/avatar.jpg') }}" class="avatar-border" alt="avatar">
-                        </a>
-                    </div>
-                    <div class="member__info">
-                        <p class="member__name">
-                            <a class="member__link" href="#">Ahmed</a>
-                        </p>
-                        <div class="member__stats">
-                            <p class="member__stat"><a class="member__link_grey" href="#">4 questions</a>
+                        <div class="member__info">
+                            <p class="member__name">
+                                <a class="member__link" href="#">{{ l.getUsername }}</a>
                             </p>
-                            <p class="member__stat"><a class="member__link_grey" href="#">4 points</a></p>
+                            <div class="member__stats">
+                                <p class="member__stat"><a class="member__link_grey" href="#">{{ l.getQuestions|length }} questions</a>
+                                </p>
+                                <p class="member__stat"><a class="member__link_grey" href="#">{{ l.getLawRating }} points</a></p>
+                            </div>
+                            <p class="member__status">Enlighted</p>
                         </div>
-                        <p class="member__status">Enlighted</p>
                     </div>
-                </div>
-                <div class="member">
-                    <div class="member__avatar">
-                        <a href="#">
-                            <img src="{{ asset('img/avatar.jpg') }}" class="avatar-border" alt="avatar">
-                        </a>
-                    </div>
-                    <div class="member__info">
-                        <p class="member__name">
-                            <a class="member__link" href="#">Ahmed</a>
-                        </p>
-                        <div class="member__stats">
-                            <p class="member__stat"><a class="member__link_grey" href="#">4 questions</a>
-                            </p>
-                            <p class="member__stat"><a class="member__link_grey" href="#">4 points</a></p>
-                        </div>
-                        <p class="member__status">Enlighted</p>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
 

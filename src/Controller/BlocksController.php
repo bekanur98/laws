@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use App\Entity\Tag;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -68,9 +69,10 @@ class BlocksController extends AbstractController
     public function rightSideAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $lawyers = $em->getRepository(User::class)->findTop3Lawyers();
         $tags = $em->getRepository(Tag::class)->findTrendingTags();
 
-        return $this->render('Blocks/right_side.html.twig', ['tags' => $tags]);
+        return $this->render('Blocks/right_side.html.twig', ['tags' => $tags, 'lawyers' => $lawyers]);
     }
 
     public function footerAction()

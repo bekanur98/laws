@@ -66,6 +66,20 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ;
     }
 
+    public function findTop3lawyers()
+    {
+        return $this->createQueryBuilder('u')
+//            ->select('u', 'q')
+//            ->leftJoin('u.questions', 'q')
+            ->andWhere('u.is_lawyer = true')
+            ->orderBy('u.law_rating', 'DESC')
+//            ->addOrderBy('q.rating', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

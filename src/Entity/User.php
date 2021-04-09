@@ -132,6 +132,11 @@ class User implements UserInterface
     private $createdAt;
 
     /**
+     * @ORM\ManyToMany(targetEntity=QuestionLike::class, mappedBy="user")
+     */
+    private $questionLikes;
+
+    /**
      * @return mixed
      */
     public function getThumbnailFile()
@@ -165,6 +170,7 @@ class User implements UserInterface
         $this->law_rating = 0;
         $this->questions = new ArrayCollection();
         $this->answers = new ArrayCollection();
+        $this->questionLikes = new ArrayCollection();
     }
 
 
@@ -470,6 +476,33 @@ class User implements UserInterface
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $this->createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|QuestionLike[]
+     */
+    public function getQuestionLikes(): Collection
+    {
+        return $this->questionLikes;
+    }
+
+    public function addQuestionLike(QuestionLike $questionLike): self
+    {
+        if (!$this->questionLikes->contains($questionLike)) {
+            $this->questionLikes[] = $questionLike;
+            $questionLike->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuestionLike(QuestionLike $questionLike): self
+    {
+        if ($this->questionLikes->removeElement($questionLike)) {
+            $questionLike->removeUser($this);
+        }
 
         return $this;
     }

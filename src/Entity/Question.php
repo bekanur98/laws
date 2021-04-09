@@ -66,6 +66,11 @@ class Question
      */
     private $answers;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=QuestionLike::class, mappedBy="question")
+     */
+    private $questionLikes;
+
     public function __construct()
     {
         $this->is_answered = false;
@@ -74,6 +79,7 @@ class Question
         $this->answers = new ArrayCollection();
         $this->setViews(0);
         $this->setRating(0);
+        $this->questionLikes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -225,5 +231,32 @@ class Question
     public function __toString()
     {
         return $this->title_question;
+    }
+
+    /**
+     * @return Collection|QuestionLike[]
+     */
+    public function getQuestionLikes(): Collection
+    {
+        return $this->questionLikes;
+    }
+
+    public function addQuestionLike(QuestionLike $questionLike): self
+    {
+        if (!$this->questionLikes->contains($questionLike)) {
+            $this->questionLikes[] = $questionLike;
+            $questionLike->addQuestion($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuestionLike(QuestionLike $questionLike): self
+    {
+        if ($this->questionLikes->removeElement($questionLike)) {
+            $questionLike->removeQuestion($this);
+        }
+
+        return $this;
     }
 }
