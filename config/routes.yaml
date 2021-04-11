@@ -9,3 +9,7 @@ set_locale:
 app_login:
     path: /login
     controller: "App\\Controller\\SecurityController::login"
+
+searchByTag:
+    path:       searchByTag
+    controller: App\Controller\QuestionsController::searchByTag

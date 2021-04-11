@@ -41,7 +41,7 @@
                         </p><br>
                         <div class="tranding-tags">
                             {% for tag in qst.getTags %}
-                                <a href="#" class="tranding-tags__tag">{{ tag.getName }}</a>
+                                <a href="{{ path('searchByTag', {'tag': tag.getName}) }}" class="tranding-tags__tag">{{ tag.getName }}</a>
                             {% endfor %}
                         </div>
                         <p class="question-block__footer">

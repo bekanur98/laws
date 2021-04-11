@@ -104,6 +104,19 @@ class QuestionsController extends AbstractController {
 
         return $this->render('Layouts/questions/questions.html.twig', ['questions'=>$questions]);
     }
+
+    /**
+     * @Route("/questions/search/tag", name="searchByTag")
+     */
+    public function searchByTag(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        $tag = $request->request->get('tag');
+        dd($tag);
+        $questions = $em->getRepository(Question::class)->findByTag($tag);
+
+        return $this->render('Layouts/questions/questions.html.twig', array('questions'=>$questions));
+    }
 }
 
 ?>

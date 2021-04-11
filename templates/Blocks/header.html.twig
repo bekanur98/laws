@@ -30,8 +30,10 @@
                 </li>
             </ul>
             <div class="search-block">
-                <input type="search" class="search-block__input" placeholder="Type Search Words">
-                <button class="search-block__btn">Поиск</button>
+                <form method="POST" action="{{path('searchByTag')}}">
+                    <input type="search" class="search-block__input" placeholder="Type Search Words" name="tag">
+                    <button class="search-block__btn">Поиск</button>
+                </form>
             </div>
 
         </div>
