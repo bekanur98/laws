@@ -31,7 +31,6 @@ function subscribe(instance) {
     instance.element.addEventListener('click', (event) => {
         // отменяем "действие по умолчанию"
         event.preventDefault();
-        console.log(instance);
         // меняем состояние аккордеона
         changeElementStatus(instance);
     });
@@ -40,11 +39,8 @@ function subscribe(instance) {
 }
 
 function changeElementStatus(instance) {
-    if (instance.isActive) {
-        hideElement(instance);
-    } else {
-        showElement(instance);
-    }
+    if (instance.isActive) return hideElement(instance);
+    return showElement(instance);
 }
 
 function hideElement(object) {
@@ -54,6 +50,9 @@ function hideElement(object) {
     target.style.height = null;
     // делаем статус неактивным
     target.style.borderTop = 'none'
+    setTimeout(() => {
+        target.previousElementSibling.style.paddingBottom = 0
+    }, 350)
     instance.isActive = false;
 }
 function showElement(object) {
@@ -62,6 +61,7 @@ function showElement(object) {
     // задаем ответу сохраненную в measureHeight высоту
     target.style.height = `${height}px`;
     target.style.borderTop = '1px solid #e1e3e3'
+    target.previousElementSibling.style.paddingBottom = 20
     // делаем статус активным
     instance.isActive = true;
 }
