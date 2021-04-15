@@ -18,12 +18,12 @@
             <br>
             <h1 class="h3 mb-3 font-weight-normal">Войти</h1>
             <label for="inputUsername">
-                Username
-            <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form__input form-control" placeholder="Имя пользователя" required autofocus>
+                Имя пользователя
+            <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form__input form-control" required autofocus>
             </label>
             <label for="inputPassword">
                 Пароль
-                <input type="password" name="password" id="inputPassword" class="form__input form-control" placeholder="Пароль" required>
+                <input type="password" name="password" id="inputPassword" class="form__input form-control" required>
             </label>
             <input type="hidden" name="_csrf_token"
                    value="{{ csrf_token('authenticate') }}"

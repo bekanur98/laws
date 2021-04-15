@@ -1,6 +1,6 @@
 {% extends 'Default/home.html.twig' %}
 
-{% block body %}
+{% block questions %}
     <div class="questions-list">
         <div class="question-block">
             <div class="question-block__top">
@@ -12,18 +12,18 @@
                         <a href="#" class="user-info__author-name">{{ qst.getUser }}</a>
                         <span class="user-info__author-badge">Explainer</span>
                         <p class="qustion-meta-data">
-                                                <span class="qustion-meta-data__meta-date">
-                                                    Asked:
-                                                    <a href="#">{{ qst.getCreatedAt | date('F j, Y, g:i a')}}</a>
-                                                </span>
+                            <span class="qustion-meta-data__meta-date">
+                                Asked:
+                                <a href="#">{{ qst.getCreatedAt | date('F j, Y, g:i a')}}</a>
+                            </span>
                             <span class="qustion-meta-data__byline">
-                                                    In:
-                                                    <a href="#">Language</a>
-                                                </span>
+                                In:
+                                <a href="#">Language</a>
+                            </span>
                         </p>
                     </div>
 
-                    <p class="question-block__question">
+                    <p class="question-block__question-title">
                         <a href="#">{{ qst.getTitleQuestion}}</a>
                     </p>
                 </div>
@@ -35,13 +35,8 @@
                     <a href="{{ path('ratingUpdate', {'id': qst.getId, 'like': 0}) }}"><p class="vote-bottom"></p></a>
                 </div>
                 <div class="question-block__content">
-                    <p class="question-block__content">
+                    <p class="question-block__question-body">
                         {{ qst.getBodyQuestion | striptags }}
-                    </p><br><br>
-                    <p class="question-block__answer">
-                        {% for ans in qst.getAnswers %}
-                            {{ ans.getAnswerBody | striptags }}<br><br>
-                        {% endfor %}
                     </p><br>
                     <div class="tranding-tags">
                         {% for tag in qst.getTags %}
@@ -49,25 +44,66 @@
                         {% endfor %}
                     </div>
                     <p class="question-block__footer">
-                                            <span class="question-block__best-answers">
-                                                <a href="{{ path('answer_question', {'id': qst.getId}) }}">
-                                                    {% if qst.getAnswers|length < 2 %}
-                                                        {{ qst.getAnswers|length }} Answer
-                                                    {% else %}
-                                                        {{ qst.getAnswers|length }} Answers
-                                                    {% endif %}</a>
-                                            </span>
+                        <span class="question-block__best-answers">
+                            {% if qst.getAnswers|length < 2 %}
+                                {{ qst.getAnswers|length }} Answer
+                            {% else %}
+                                {{ qst.getAnswers|length }} Answers
+                            {% endif %}
+                        </span>
                         <span class="question-block__views">
-                                {% if qst.getViews|length < 2 %}
-                                    {{ qst.getViews }} View
-                                {% else %}
-                                    {{ qst.getViews }} Views
-                                {% endif %}
-                            </span>
+                            {% if qst.getViews|length < 2 %}
+                                {{ qst.getViews }} View
+                            {% else %}
+                                {{ qst.getViews }} Views
+                            {% endif %}
+                        </span>
+                        <a href="{{ path('answer_question', {'id': qst.getId}) }}" class="btn">Answer</a>
                     </p>
                 </div>
             </div>
         </div>
     </div>
 
+{% endblock %}
+{% block answers %}
+    <div class="answer-content">
+        <div class="answer-content__bottom">
+            <h3>
+                {% if qst.getAnswers|length < 2 %}
+                    {{ qst.getAnswers|length }} Answer
+                {% else %}
+                    {{ qst.getAnswers|length }} Answers
+                {% endif %}
+            </h3>
+
+            {% for ans in qst.getAnswers %}
+                <div class="answer-item">
+                    <div class="answer-item__avatar">
+                        <img src="{{ asset('img/avatar.jpg') }}" class="avatar-border" alt="avatar">
+                    </div>
+                    <div class="answer-item__content">
+                        <div class="user-info">
+                            <a href="#" class="user-info__author-name">{{ ans.getUser }}</a>
+                            <span class="user-info__author-badge">Explainer</span>
+                        </div>
+                        <p class="answer-item__meta">
+                            Added an answer on {{ qst.getCreatedAt | date('F j, Y, g:i a') }}
+                        </p>
+                        <p class="answer-item__answer">
+                            {{ ans.getAnswerBody | striptags }}
+                        </p>
+                        <div class="answer-item__action">
+                            <div class="answer-item__rating">
+                                <p class="vote-up"></p>
+                                <p class="vote-result">62</p>
+                                <p class="vote-bottom"></p>
+                            </div>
+                            {#                                    <a href="#" class="answer-item__share">Share</a>#}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
