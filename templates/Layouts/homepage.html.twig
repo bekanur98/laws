@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block page_title %}{% endblock %}</title>
     {% block stylesheets %}
-        {{ render(controller("App\\Controller\\BlocksController:cssAction")) }}
+        {{ render(controller("App\\Controller\\BlocksController::cssAction")) }}
     {% endblock %}
 </head>
 <body>
 <!-- header -->
-{% block header %} {{ render(controller("App\\Controller\\BlocksController:headerAction")) }} {% endblock %}
+{% block header %} {{ render(controller("App\\Controller\\BlocksController::headerAction")) }} {% endblock %}
 <!--/header-->
 
 <!-- left -->
@@ -24,12 +24,12 @@
 <!--/content -->
 
 <!-- right -->
-{% block rigth_side %} {{ render(controller("App\\Controller\\BlocksController:rightSideAction")) }} {% endblock %}
+{% block rigth_side %} {{ render(controller("App\\Controller\\BlocksController::rightSideAction")) }} {% endblock %}
 <!--/right -->
 
 
 <!-- footer -->
-{% block footer %} {{ render(controller("App\\Controller\\BlocksController:footerAction")) }} {% endblock %}
+{% block footer %} {{ render(controller("App\\Controller\\BlocksController::footerAction")) }} {% endblock %}
 <!--/footer -->
 
 </body>
