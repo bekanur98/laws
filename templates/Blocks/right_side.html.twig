@@ -93,7 +93,10 @@
             <h3 class="h3">Trending Tags</h3>
             <div class="tranding-tags">
                 {% for tag in tags %}
-                    <a href="#" class="tranding-tags__tag">{{ tag.getName }}</a>
+                    <form method="POST" style="display: inline-block" action="{{path('searchByTag')}}">
+                        <input type="hidden" class="search-block__input" placeholder="Type Search Words" name="tag" value="{{ tag.getName }}">
+                        <button class="tranding-tags__tag">{{ tag.getName }}</button>
+                    </form>
                 {% endfor %}
             </div>
         </div>

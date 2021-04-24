@@ -12,9 +12,9 @@ use Symfony\Component\HttpFoundation\Request;
 class QuestionsController extends AbstractController {
 
     /**
-     * @Route("/questions", name="showList")
+     * @Route("/questions", name="showQuestions")
      */
-    public function showList() {
+    public function showQuestions() {
         $entityManager = $this->getDoctrine()->getManager();
         $questions = $entityManager->getRepository(Question::class)->findAll();
 
@@ -112,7 +112,6 @@ class QuestionsController extends AbstractController {
         $em = $this->getDoctrine()->getManager();
 
         $tag = $request->request->get('tag');
-        dd($tag);
         $questions = $em->getRepository(Question::class)->findByTag($tag);
 
         return $this->render('Layouts/questions/questions.html.twig', array('questions'=>$questions));

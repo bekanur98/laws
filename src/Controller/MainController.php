@@ -16,16 +16,7 @@ class MainController extends AbstractController
      */
     public function index()
     {
-        return $this->redirectToRoute("showList");
-    }
-
-    //Only to show design of these pagesin bil304, will edit later.
-    /**
-     * @Route("/news", name="showNews")
-     */
-    public function showNews()
-    {
-        return $this->render('blocks/news.html.twig');
+        return $this->redirectToRoute("showQuestions");
     }
 
     /**
@@ -33,7 +24,7 @@ class MainController extends AbstractController
      */
     public function showFAQ()
     {
-        return $this->render('blocks/FAQ.html.twig');
+        return $this->render('Layouts/faq/faq.html.twig');
     }
 
 }

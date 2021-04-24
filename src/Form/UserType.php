@@ -37,8 +37,8 @@ class UserType extends AbstractType
             ->add('gender', ChoiceType::class, [
                 'label' => 'Пол',
                 'choices' => [
-                    'Муж.' => true,
-                    'Жен.' => false
+                    'Мужской' => true,
+                    'Женский' => false
                 ]
             ])
             ->add('phone_number', TextType::class, ['label' => 'Номер телефона'])

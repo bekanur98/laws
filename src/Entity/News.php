@@ -29,7 +29,7 @@ class News
     private $body_news;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime")
      */
     private $created_at;
 
@@ -40,7 +40,7 @@ class News
 
     public function __construct()
     {
-        $this->created_at = new DateTime();
+        $this->created_at = new \DateTime();
         $this->views = 0;
     }
 

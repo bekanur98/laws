@@ -69,7 +69,7 @@ class RegistrationController extends AbstractController
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('showList');
+            return $this->redirectToRoute('showQuestions');
 
         }
 

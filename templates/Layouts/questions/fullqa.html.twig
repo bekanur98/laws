@@ -40,7 +40,10 @@
                     </p><br>
                     <div class="tranding-tags">
                         {% for tag in qst.getTags %}
-                            <a href="{{ path('searchByTag', {'tag': tag.getName}) }}" class="tranding-tags__tag">{{ tag.getName }}</a>
+                            <form method="POST" style="display: inline-block" action="{{path('searchByTag')}}">
+                                <input type="hidden" class="search-block__input" placeholder="Type Search Words" name="tag" value="{{ tag.getName }}">
+                                <button class="tranding-tags__tag">{{ tag.getName }}</button>
+                            </form>
                         {% endfor %}
                     </div>
                     <p class="question-block__footer">

@@ -1,56 +1,29 @@
-{% extends 'Layouts/homepage.html.twig' %}
+{% extends 'Default/home.html.twig' %}
 {% block page_title %}Registration page{% endblock %}
 
-{% form_theme form 'bootstrap_4_layout.html.twig' %}
-
 {% block body %}
-<body>
-<div class="panel panel-info">
 
-    <div class="form-wrapper">
-        {{ form_start(form) }}
-
+    <div class=" form-wrapper">
         <form method="post" class="form form_register">
+            {{ form_start(form) }}
             <h1 class="h3 mb-3 font-weight-normal">Зарегистрироваться</h1>
-            {{ form_row(form.first_name, {
-                    'attr': {'placeholder' : 'Имя',
-                            'class': 'form__input form-control',
-                            'type': 'text', 'required': 'required'}}) }}
-            {{ form_row(form.last_name, {
-                'attr': {'placeholder' : 'Фамилия',
-                        'class': 'form__input form-control',
-                        'type': 'text', 'required': 'required'}}) }}
-            {{ form_row(form.username, {
-                'attr': {'placeholder' : 'Ник',
-                        'class': 'form__input form-control',
-                        'type': 'text', 'required': 'required'}}) }}
-            {{ form_row(form.email, {
-                'attr': {'placeholder' : 'Эл. Почта',
-                        'class': 'form__input form-control',
-                        'type': 'email', 'required': 'required'}}) }}
-            {{ form_row(form.phone_number, {
-                'attr': {'placeholder' : 'Номер телефона',
-                        'class': 'form__input form-control', 'type': 'number'}}) }}
-            {{ form_row(form.is_lawyer, {
-                'attr': {'class': 'form__input form-control'}}) }}
-            {{ form_row(form.gender, {
-                'attr': {'class': 'form__input form-control'}}) }}
-            {{ form_row(form.law_licence_no, {
-                'attr': {'placeholder' : 'Номер лицензии',
-                        'class': 'form__input form-control', 'type': 'text'}}) }}
-            {{ form_row(form.password.first, {
-                'attr': {'placeholder' : 'Пароль',
-                        'class': 'form__input form-control', 'type': 'password'}}) }}
-            {{ form_row(form.password.second, {
-                'attr': {'placeholder' : 'Повторите пароль',
-                        'class': 'form__input form-control', 'type': 'password'}}) }}
-            {{ form_row(form.submit, {
-                'attr': {'class': 'btn', 'type': 'submit'}}) }}
+            {{ form_row(form.first_name, {'attr': {'class': 'form__input form-control',
+                                        'type': 'text', 'required': 'required'}}) }}
+            {{ form_row(form.last_name, {'attr': {'class': 'form__input form-control',
+                                        'type': 'text', 'required': 'required'}}) }}
+            {{ form_row(form.username, {'attr': {'class': 'form__input form-control',
+                                        'type': 'text', 'required': 'required'}}) }}
+            {{ form_row(form.email, {'attr': {'class': 'form__input form-control',
+                                    'type': 'email', 'required': 'required'}}) }}
+            {{ form_row(form.phone_number, {'attr': {'class': 'form__input form-control', 'type': 'number'}}) }}
+            {{ form_row(form.is_lawyer, {'attr': {'class': 'form__input form-control'}}) }}
+            {{ form_row(form.gender, {'attr': {'class': 'form__input form-control'}}) }}
+            {{ form_row(form.law_licence_no, {'attr': {'class': 'form__input form-control', 'type': 'text'}}) }}
+            {{ form_row(form.password.first, {'attr': {'class': 'form__input form-control', 'type': 'password'}}) }}
+            {{ form_row(form.password.second, {'attr': {'class': 'form__input form-control', 'type': 'password'}}) }}
+            {{ form_row(form.submit, {'attr': {'class': 'btn', 'type': 'submit'}}) }}
 
             {{ form_end(form) }}
+        </form>
     </div>
-
-</div>
-</body>
-
 {% endblock %}

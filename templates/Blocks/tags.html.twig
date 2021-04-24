@@ -1,6 +1,6 @@
 {% extends "Default/home.html.twig" %}
 
-{% block body %}
+{% block content %}
 
 {% for tag in tags | sortbyfield('name') %}
     {{ tag.getName }} <br>

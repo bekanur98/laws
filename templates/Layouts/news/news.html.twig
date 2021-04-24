@@ -1,4 +1,4 @@
-{% extends 'Layouts/homepage.html.twig' %}
+{% extends 'Default/home.html.twig' %}
 {% block page_title %} News Page {% endblock %}
 
 {% block body %}
@@ -40,8 +40,20 @@
                 <p class="news__descr">We want to make it easier to learn more about a question and highlight key facts about it — such as how popular the question is, how many people are interested in it, and who the audience is. To accomplish ...</p>
             </div>
         </div>
+        {% for n in news %}
+            <div class="news__item">
+                <img src="https://2code.info/demo/themes/Discy/Try/wp-content/uploads/2018/04/team-7-413x293.jpg" alt="" class="news__img">
+                <div class="news__body">
+                    <div class="news__date"> {{ n.getCreatedAt | date('F j, Y, g:i a') }} </div>
+                    <p class="news__title">
+                        <a href="#">{{ n.getTitleNews }}</a>
+                    </p>
+                    <p class="news__descr">{{ n.getBodyNews }}</p>
+                </div>
+            </div>
+        {% endfor %}
     </div>
-    <a class="btn" href='#'>Explore our blog</a>
+    <a class="btn" href="{{ path('createNews') }}">Explore our blog</a>
 </div>
 
 {% endblock %}

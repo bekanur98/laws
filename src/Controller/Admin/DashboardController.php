@@ -15,6 +15,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Router\CrudUrlGenerator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -23,6 +24,9 @@ class DashboardController extends AbstractDashboardController
      */
     public function index(): Response
     {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            return $this->render("Blocks/permission_denied.html.twig");
+        }
         $routeBuilder = $this->get(AdminUrlGenerator::class);
 
 //        return $this->render('bundles/EasyAdminBundle/welcome.html.twig');

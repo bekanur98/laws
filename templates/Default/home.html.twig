@@ -5,6 +5,7 @@
 {% block body %}
 <!--content-->
 <div class="content">
+    {% block content %}
     <div class="new-question">
         <div class="new-question__avatar">
             <img src="{{ asset('img/avatar.jpg') }}" alt="avatar">
@@ -14,18 +15,22 @@
         </div>
     </div>
     <div class="questions-block">
+        {% block question_header %}
         <div class="questions-tab">
+            <a href="{{ path('showQuestions') }}" class="questions-tab__item">All Questions</a>
             <a href="{{ path('newQuestions') }}" class="questions-tab__item">Recent Questions</a>
             <a href="#" class="questions-tab__item">Most Answered</a>
             <a href="{{ path('answeredQuestions') }}" class="questions-tab__item">Answered</a>
             <a href="{{ path('notAnsweredQuestions') }}" class="questions-tab__item">Not Answered</a>
             <a href="{{ path('mostVisitedQuestions') }}" class="questions-tab__item">Most Visited</a>
         </div>
-        {% block questions %}
+        {% endblock %}
+        {% block question_content %}
         {% endblock %}
         {% block answers %}
         {% endblock %}
     </div>
+    {% endblock %}
 </div>
 <!--/content-->
 {% endblock %}
