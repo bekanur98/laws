@@ -11,7 +11,13 @@
                     <div class="question-block__header">
                         <div class="user-info">
                             <a href="#" class="user-info__author-name">{{ qst.getUser }}</a>
-                            <span class="user-info__author-badge">Explainer</span>
+                            <span class="user-info__author-badge">
+                                {% if qst.getUser.getIsLawyer == true %}
+                                    Юрист
+                                {% else %}
+                                    Гражданин
+                                {% endif %}
+                            </span>
                             <p class="qustion-meta-data">
                                 <span class="qustion-meta-data__meta-date">
                                     Asked:
@@ -30,6 +36,26 @@
                 </div>
                 <div class="question-block__bottom">
                     <div class="question-block__rating">
+{#                        {% for ql in qst.getQuestionLikes %}#}
+{#                            {% for u in ql.getUser %}#}
+{#                                {% if u == user %}#}
+{#                                    {% if ql.getIsUpvote %}#}
+{#                                        Up#}
+{#                                        <a class="active" href="{{ path('ratingUpdate', {'id': qst.getId, 'like': 1}) }}"><p class="vote-up"></p></a>#}
+{#                                    {% elseif ql.getIsUpvote == false%}#}
+{#                                        Down#}
+{#                                        <a href="{{ path('ratingUpdate', {'id': qst.getId, 'like': 1}) }}"><p class="vote-up"></p></a>#}
+{#                                    {% else %}#}
+{#                                        None#}
+{#                                        <a href="{{ path('ratingUpdate', {'id': qst.getId, 'like': 1}) }}"><p class="vote-up"></p></a>#}
+{#                                    {% endif %}#}
+
+{#                                {% else %}#}
+{#                                    None#}
+{#                                        <a href="{{ path('ratingUpdate', {'id': qst.getId, 'like': 1}) }}"><p class="vote-up"></p></a>#}
+{#                                {% endif %}#}
+{#                            {% endfor %}#}
+{#                        {% endfor %}#}
                         <a href="{{ path('ratingUpdate', {'id': qst.getId, 'like': 1}) }}"><p class="vote-up"></p></a>
                         <p class="vote-result">{{ qst.getRating }}</p>
                         <a href="{{ path('ratingUpdate', {'id': qst.getId, 'like': 0}) }}"><p class="vote-bottom"></p></a>

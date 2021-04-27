@@ -1,6 +1,6 @@
 {% extends 'Default/home.html.twig' %}
 
-{% block questions %}
+{% block question_content %}
     <div class="questions-list">
         <div class="question-block">
             <div class="question-block__top">
@@ -10,7 +10,13 @@
                 <div class="question-block__header">
                     <div class="user-info">
                         <a href="#" class="user-info__author-name">{{ qst.getUser }}</a>
-                        <span class="user-info__author-badge">Explainer</span>
+                        <span class="user-info__author-badge">
+                            {% if qst.getUser.getIsLawyer == true %}
+                                Юрист
+                            {% else %}
+                                Гражданин
+                            {% endif %}
+                        </span>
                         <p class="qustion-meta-data">
                             <span class="qustion-meta-data__meta-date">
                                 Asked:
@@ -88,7 +94,13 @@
                     <div class="answer-item__content">
                         <div class="user-info">
                             <a href="#" class="user-info__author-name">{{ ans.getUser }}</a>
-                            <span class="user-info__author-badge">Explainer</span>
+                            <span class="user-info__author-badge">
+                                {% if qst.getUser.getIsLawyer == true %}
+                                    Юрист
+                                {% else %}
+                                    Гражданин
+                                {% endif %}
+                            </span>
                         </div>
                         <p class="answer-item__meta">
                             Added an answer on {{ qst.getCreatedAt | date('F j, Y, g:i a') }}
@@ -98,11 +110,11 @@
                         </p>
                         <div class="answer-item__action">
                             <div class="answer-item__rating">
-                                <p class="vote-up"></p>
-                                <p class="vote-result">62</p>
-                                <p class="vote-bottom"></p>
+                                <a href="{{ path('ansRatingUpdate', {'id': ans.getId, 'qid': qst.getId, 'like': 1}) }}"><p class="vote-up"></p></a>
+                                <p class="vote-result">{{ ans.getRating }}</p>
+                                <a href="{{ path('ansRatingUpdate', {'id': ans.getId, 'qid': qst.getId, 'like': 0}) }}"><p class="vote-bottom"></p></a>
                             </div>
-                            {#                                    <a href="#" class="answer-item__share">Share</a>#}
+                            {#<a href="#" class="answer-item__share">Share</a>#}
                         </div>
                     </div>
                 </div>

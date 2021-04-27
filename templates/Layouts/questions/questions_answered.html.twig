@@ -12,7 +12,13 @@
                         <div class="question-block__header">
                             <div class="user-info">
                                 <a href="#" class="user-info__author-name">{{ qst.getUser }}</a>
-                                <span class="user-info__author-badge">Explainer</span>
+                                <span class="user-info__author-badge">
+                                    {% if qst.getUser.getIsLawyer == true %}
+                                        Юрист
+                                    {% else %}
+                                        Гражданин
+                                    {% endif %}
+                                </span>
                                 <p class="qustion-meta-data">
                                 <span class="qustion-meta-data__meta-date">
                                     Asked:

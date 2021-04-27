@@ -7,12 +7,10 @@ use App\Entity\QuestionLike;
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 
-class RatingController extends AbstractController {
-
+class QuestRatingController extends AbstractController {
     /**
      * @var Security
      */
@@ -22,14 +20,13 @@ class RatingController extends AbstractController {
     }
 
     /**
-     * @Route("/questions/rating/{id}/{like}", name="ratingUpdate")
+     * @Route ("/questions/rating/{id}/{like}", name="ratingUpdate")
      * @param Request $request
      * @param $id
      * @param $like
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function ratingUpdate(Request $request, $id, $like) {
-
         $em = $this->getDoctrine()->getManager();
         $question = $em->getRepository(Question::class)->find($id);
         $user = $this->security->getUser();

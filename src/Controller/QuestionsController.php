@@ -8,13 +8,24 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 
 class QuestionsController extends AbstractController {
+
+    /**
+     * @var Security
+     */
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
 
     /**
      * @Route("/questions", name="showQuestions")
      */
     public function showQuestions() {
+
+        $user = $this->security->getUser();
         $entityManager = $this->getDoctrine()->getManager();
         $questions = $entityManager->getRepository(Question::class)->findAll();
 
@@ -25,13 +36,14 @@ class QuestionsController extends AbstractController {
             $entityManager->flush();
         }
 
-        return $this->render('Layouts/questions/questions.html.twig', array('questions'=>$questions));
+        return $this->render('Layouts/questions/questions.html.twig', array('questions'=>$questions, 'user'=>$user));
     }
 
     /**
      * @Route("/questions/new", name="newQuestions")
      */
     public function showNewQuestions() {
+        $user = $this->security->getUser();
         $entityManager = $this->getDoctrine()->getManager();
         $questions = $entityManager->getRepository(Question::class)->findTop5NewQuestions();
 
@@ -42,7 +54,7 @@ class QuestionsController extends AbstractController {
             $entityManager->flush();
         }
 
-        return $this->render('Layouts/questions/questions.html.twig', ['questions' => $questions]);
+        return $this->render('Layouts/questions/questions.html.twig', ['questions' => $questions, 'user'=>$user]);
 
     }
 
@@ -90,6 +102,7 @@ class QuestionsController extends AbstractController {
      * @Route("/questions/most_visited", name="mostVisitedQuestions")
      */
     public function showMostVisitedQuestions() {
+        $user = $this->security->getUser();
         $entityManager = $this->getDoctrine()->getManager();
         $questions = $entityManager->getRepository(Question::class)->findTop5Visited();
 
@@ -102,19 +115,20 @@ class QuestionsController extends AbstractController {
             $entityManager->flush();
         }
 
-        return $this->render('Layouts/questions/questions.html.twig', ['questions'=>$questions]);
+        return $this->render('Layouts/questions/questions.html.twig', ['questions'=>$questions, 'user'=>$user]);
     }
 
     /**
      * @Route("/questions/search/tag", name="searchByTag")
      */
     public function searchByTag(Request $request) {
+        $user = $this->security->getUser();
         $em = $this->getDoctrine()->getManager();
 
         $tag = $request->request->get('tag');
         $questions = $em->getRepository(Question::class)->findByTag($tag);
 
-        return $this->render('Layouts/questions/questions.html.twig', array('questions'=>$questions));
+        return $this->render('Layouts/questions/questions.html.twig', array('questions'=>$questions, 'user'=>$user));
     }
 }
 

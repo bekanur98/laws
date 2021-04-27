@@ -7,10 +7,18 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class RegistrationControllerTest extends WebTestCase
 {
-    public function testUserRegister()
-    {
-        $client = static::createClient();
 
+    /**
+     * @dataProvider userProvider
+     */
+    public function testUserRegister($response) {
+        $this->assertEquals(200, $response);
+    }
+
+    public function userProvider() {
+        $responses = [];
+
+        $client = static::createClient();
         $client->request('POST', '/register', [
             'first_name' => 'first_name',
             'last_name' => 'last_name',
@@ -22,8 +30,36 @@ class RegistrationControllerTest extends WebTestCase
             'law_licence_no' => 'admin',
             'password' => 'admin',
         ]);
+        array_push($responses, $client->getResponse()->getStatusCode());
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $client->request('POST', '/register', [
+            'first_name' => 'aidana',
+            'last_name' => 'kenzhetaeva',
+            'username' => 'admin',
+            'email' => 'kenzhetaeva11@gmail.com',
+            'phone_number' => '05584(1234)',
+            'is_lawyer' => false,
+            'gender' => true,
+            'law_licence_no' => '12345678',
+            'password' => 'kenzhetaeva',
+        ]);
+        array_push($responses, $client->getResponse()->getStatusCode());
 
+        $client->request('POST', '/register', [
+            'first_name' => 'first_name',
+            'last_name' => 'last_name',
+            'username' => 'admin',
+            'email' => 'email@email.com',
+            'phone_number' => '05584-09876',
+            'is_lawyer' => false,
+            'gender' => false,
+            'law_licence_no' => 'admin',
+            'password' => 'qwerty',
+        ]);
+        array_push($responses, $client->getResponse()->getStatusCode());
+
+        return [
+            $responses
+        ];
     }
 }

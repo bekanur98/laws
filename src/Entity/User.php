@@ -137,6 +137,11 @@ class User implements UserInterface
     private $questionLikes;
 
     /**
+     * @ORM\ManyToMany(targetEntity=AnswerLike::class, mappedBy="user")
+     */
+    private $answerLikes;
+
+    /**
      * @return mixed
      */
     public function getThumbnailFile()
@@ -171,6 +176,7 @@ class User implements UserInterface
         $this->questions = new ArrayCollection();
         $this->answers = new ArrayCollection();
         $this->questionLikes = new ArrayCollection();
+        $this->answerLikes = new ArrayCollection();
     }
 
 
@@ -502,6 +508,33 @@ class User implements UserInterface
     {
         if ($this->questionLikes->removeElement($questionLike)) {
             $questionLike->removeUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|AnswerLike[]
+     */
+    public function getAnswerLikes(): Collection
+    {
+        return $this->answerLikes;
+    }
+
+    public function addAnswerLike(AnswerLike $answerLike): self
+    {
+        if (!$this->answerLikes->contains($answerLike)) {
+            $this->answerLikes[] = $answerLike;
+            $answerLike->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnswerLike(AnswerLike $answerLike): self
+    {
+        if ($this->answerLikes->removeElement($answerLike)) {
+            $answerLike->removeUser($this);
         }
 
         return $this;
