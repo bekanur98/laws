@@ -6,23 +6,34 @@
     <div class="form-wrapper form-wrapper_login">
         <form method="post" class="form">
             {% if error %}
-                <div class="alert alert-danger" style="color: red">! Имя пользователя или пароль введен не правильно</div>
+                <div class="alert alert-danger" style="color: red">! Incorrect username or password</div>
 {#                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>#}
             {% endif %}
 
             {% if app.user %}
                 <div class="mb-3">
-                    Вы вошли в систему как {{ app.user.username }}, <a href="{{ path('app_logout') }}">Выйти</a>
+                    You signed in as {{ app.user.username }}
                 </div>
-            {% endif %}
-            <br>
-            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Войти</h1>
+                <br>
+                <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Sign in</h1>
+                <label for="inputUsername">
+                    Username
+                    <input type="text" value="{{ app.user.username }}" name="username" id="inputUsername" class="form__input form-control" required autofocus>
+                </label>
+                <label for="inputPassword">
+                    Password
+                    <input type="password" value="•••••••••" name="password" id="inputPassword" class="form__input form-control" required>
+                </label>
+
+                <a href="{{ path('app_logout') }}" class="btn" style="text-align: center">Logout</a>
+            {% else %}
+            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Sign in</h1>
             <label for="inputUsername">
-                Имя пользователя
+                Username
             <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form__input form-control" required autofocus>
             </label>
             <label for="inputPassword">
-                Пароль
+                Password
                 <input type="password" name="password" id="inputPassword" class="form__input form-control" required>
             </label>
             <input type="hidden" name="_csrf_token"
@@ -38,10 +49,11 @@
 {#                    </label>#}
 {#                </div>#}
 
-            <p class="form__reset-link"><a href="#">Забыли пароль?</a></p>
+            <p class="form__reset-link"><a href="#">Forgot password?</a></p>
             <button class="btn" type="submit">
-                Войти
+                Sign in
             </button>
+            {% endif %}
         </form>
     </div>
 {% endblock %}

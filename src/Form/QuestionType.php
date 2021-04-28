@@ -23,7 +23,7 @@ class QuestionType extends AbstractType {
             ->add('title_question')
             ->add('body_question')
             ->add('submit', SubmitType::class, [
-                'label' => 'Задать вопрос',
+                'label' => 'Ask Question',
                 'attr' => [
                     'class' => 'btn btn-success pull-right'
                 ]

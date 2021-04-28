@@ -15,7 +15,7 @@ class NewsType extends AbstractType {
             ->add('title_news')
             ->add('body_news')
             ->add('submit', SubmitType::class, [
-                'label' => 'Создать',
+                'label' => 'Create',
                 'attr' => [
                     'class' => 'btn btn-success pull-right'
                 ]

@@ -50,7 +50,7 @@ class RegistrationController extends AbstractController
 
         $form = $this->createForm(UserType::class, $user);
         $form->add('submit', SubmitType::class, [
-            'label' => 'Регистрация',
+            'label' => 'Sign up',
             'attr' => [
                 'class' => 'btn btn-success pull-right'
             ]
@@ -67,9 +67,11 @@ class RegistrationController extends AbstractController
             $user->setConfirmationToken($csrfToken);
 
             $em->persist($user);
-            $em->flush();
 
-            return $this->redirectToRoute('showQuestions');
+            $swiftMailer = new TwigSwiftMailer($this->mailer, $this->twig);
+            $swiftMailer->sendMessage([], '1804.01023@manas.edu.kg', $user->getEmail());
+
+            return $this->render('security/checkEmail.html.twig', ['username'=> $user->getUsername(), 'email'=>$user->getEmail()]);
 
         }
 

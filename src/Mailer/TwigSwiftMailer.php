@@ -58,12 +58,11 @@ class TwigSwiftMailer implements MailerInterface
     }
 
     /**
-     * @param string $templateName
      * @param array  $context
      * @param string $fromEmail
      * @param string $toEmail
      */
-    protected function sendMessage($templateName, $context, $fromEmail, $toEmail)
+    public function sendMessage($context, $fromEmail, $toEmail)
     {
         $context = $this->twig->mergeGlobals($context);
         $template = $this->twig->load('security/email.txt.twig');
@@ -74,7 +73,7 @@ class TwigSwiftMailer implements MailerInterface
             ->setFrom($fromEmail)
             ->setTo($toEmail);
 
-        $message->setBody( 'text/html');
+        $message->setBody( 'Complete registration', 'text/plain');
 
 
         $this->mailer->send($message);

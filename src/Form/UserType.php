@@ -25,25 +25,25 @@ class UserType extends AbstractType
     {
 
         $builder
-            ->add('email', EmailType::class, ['label' => 'Эл. почта*'])
+            ->add('email', EmailType::class, ['label' => 'Email*'])
             ->add('password', RepeatedType::class, array(
                 'type' => PasswordType::class,
-                'first_options' => array('label' => 'Пароль*'),
-                'second_options' => array('label' => 'Повторите пароль*'),
+                'first_options' => array('label' => 'Password*'),
+                'second_options' => array('label' => 'Confirm Password*'),
             ))
-            ->add('username', TextType::class, ['label' => 'Ник*'])
-            ->add('first_name', TextType::class, ['label' => 'Имя*'])
-            ->add('last_name', TextType::class, ['label' => 'Фамилия*'])
+            ->add('username', TextType::class, ['label' => 'Username*'])
+            ->add('first_name', TextType::class, ['label' => 'Name*'])
+            ->add('last_name', TextType::class, ['label' => 'Surname*'])
             ->add('gender', ChoiceType::class, [
-                'label' => 'Пол',
+                'label' => 'Gender',
                 'choices' => [
-                    'Мужской' => true,
-                    'Женский' => false
+                    'Male' => true,
+                    'Female' => false
                 ]
             ])
-            ->add('phone_number', TextType::class, ['label' => 'Номер телефона'])
-            ->add('is_lawyer', CheckboxType::class, ['label' => 'Юрист'])
-            ->add('law_licence_no', TextType::class, ['label' => 'Номер лицензии'])
+            ->add('phone_number', TextType::class, ['label' => 'Phone number'])
+            ->add('is_lawyer', CheckboxType::class, ['label' => 'Lawyer'])
+            ->add('law_licence_no', TextType::class, ['label' => 'Licence No.'])
         ;
     }
 

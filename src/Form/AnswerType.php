@@ -15,7 +15,7 @@ class AnswerType extends AbstractType {
         $builder
             ->add('answer_body')
             ->add('submit', SubmitType::class, [
-                'label' => 'Ответить',
+                'label' => 'Answer',
                 'attr' => [
                     'class' => 'btn btn-success pull-right'
                 ]
