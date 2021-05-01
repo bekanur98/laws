@@ -1,0 +1,13 @@
+{% extends 'Layouts/homepage.html.twig' %}
+{% block page_title %} Forgot Password {% endblock %}
+
+{% block body %}
+
+    <form method="post" action="{{ path('sendVerificationCode') }}">
+        <input type="hidden" name="email" value="<?php echo $email;?>">
+        <label>Enter your email to reset password</label><br><br>
+        <input type="email" name='email'><br><br>
+        <button class="btn">Reset Password</button>
+    </form>
+
+{% endblock %}

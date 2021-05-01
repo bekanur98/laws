@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Mailer\TwigSwiftMailer;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -68,11 +69,27 @@ class RegistrationController extends AbstractController
 
             $em->persist($user);
 
-            $swiftMailer = new TwigSwiftMailer($this->mailer, $this->twig);
-            $swiftMailer->sendMessage([], '1804.01023@manas.edu.kg', $user->getEmail());
+            $message = (new \Swift_Message('Email'))
+                ->setFrom('1804.01023@manas.edu.kg')
+                ->setTo(''.$user->getEmail())
+                ->setBody(
+                    $this->renderView(
+                        'emails/registration.html.twig',
+                        ['name' => $user->getUsername()]
+                    ),
+                    'text/html'
+                )
+            ;
 
-            return $this->render('security/checkEmail.html.twig', ['username'=> $user->getUsername(), 'email'=>$user->getEmail()]);
+            $result = $this->mailer->send($message);
 
+            if($result) {
+                return $this->render('security/checkEmail.html.twig', [
+                    'username'=> $user->getUsername(), 'email'=>$user->getEmail()]);
+            }
+
+            return $this->render('security/checkEmail.html.twig', [
+                'username'=> $user->getUsername(), 'email'=>$user->getEmail()]);
         }
 
         return $this->render('security/registration.html.twig', array(
