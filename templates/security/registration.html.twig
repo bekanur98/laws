@@ -5,14 +5,17 @@
 
     <div class=" form-wrapper">
         <form method="post" class="form form_register">
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+            {% endfor %}
             {{ form_start(form) }}
             <h1 class="h3 mb-3 font-weight-normal">Sign up</h1>
             {{ form_row(form.first_name, {'attr': {'class': 'form__input form-control', 'type': 'text'}}) }}
             {{ form_row(form.last_name, {'attr': {'class': 'form__input form-control', 'type': 'text'}}) }}
             {% if errors %}
-                <p style="color: #aa1111">
-                    This username already taken, please choose other one!
-                </p>
+                <span class="error text-danger">This username already taken, please choose other one!</span>
             {% endif %}
             {{ form_row(form.username, {'attr': {'class': 'form__input form-control', 'type': 'text'}}) }}
             {{ form_row(form.email, {'attr': {'class': 'form__input form-control', 'type': 'email'}}) }}

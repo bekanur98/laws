@@ -1,6 +1,11 @@
 {% extends 'Default/home.html.twig' %}
 
 {% block question_content %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
     <div class="questions-list">
         <div class="question-block">
             <div class="question-block__top">
@@ -22,10 +27,10 @@
                                 Asked:
                                 <a href="#">{{ qst.getCreatedAt | date('F j, Y, g:i a')}}</a>
                             </span>
-                            <span class="qustion-meta-data__byline">
-                                In:
-                                <a href="#">Language</a>
-                            </span>
+{#                            <span class="qustion-meta-data__byline">#}
+{#                                In:#}
+{#                                <a href="#">Language</a>#}
+{#                            </span>#}
                         </p>
                     </div>
 
@@ -42,7 +47,7 @@
                 </div>
                 <div class="question-block__content">
                     <p class="question-block__question-body">
-                        {{ qst.getBodyQuestion | striptags }}
+                        {{ qst.getBodyQuestion | striptags | nl2br }}
                     </p><br>
                     <div class="tranding-tags">
                         {% for tag in qst.getTags %}
@@ -96,9 +101,9 @@
                             <a href="#" class="user-info__author-name">{{ ans.getUser }}</a>
                             <span class="user-info__author-badge">
                                 {% if qst.getUser.getIsLawyer == true %}
-                                    Юрист
+                                    Lawyer
                                 {% else %}
-                                    Гражданин
+                                    Citizen
                                 {% endif %}
                             </span>
                         </div>

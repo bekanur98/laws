@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
@@ -72,11 +73,19 @@ class RegistrationController extends AbstractController
             try {
                 $em->flush();
             } catch (\Exception $e) {
-                // if all else fails, just return an empty array
+                $this->addFlash(
+                    'error',
+                    'Error in registering!'
+                );
                 return $this->render('security/registration.html.twig', array(
                     'form' => $form->createView(), 'errors' => true
                 ));
             }
+
+            $this->addFlash(
+                'success',
+                'Successfully registered!'
+            );
 
             $message = (new \Swift_Message('Email'))
                 ->setFrom('1804.01023@manas.edu.kg')

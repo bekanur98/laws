@@ -50,7 +50,10 @@ class QuestionAddController extends AbstractController {
                 $entityManager->persist($ques);
                 $entityManager->flush();
 
-                $this->addFlash('success', 'Question successfully created!');
+                $this->addFlash(
+                    'success',
+                    'Question successfully created!'
+                );
 
                 return $this->redirectToRoute('newQuestions');
             }
@@ -89,6 +92,11 @@ class QuestionAddController extends AbstractController {
 
                 $entityManager->persist($ans);
                 $entityManager->flush();
+
+                $this->addFlash(
+                    'success',
+                    'Answer successfully added!'
+                );
 
                 return $this->redirectToRoute('showQA', ['id' => $id]);
             }

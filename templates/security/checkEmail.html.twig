@@ -3,13 +3,18 @@
 
 {% block content %}
 
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
     <div class="col-md-offset-3 col-md-6">
         <div class="box_style_2 m-t-20">
-            <h3 class="nomargin_top align-center"><i>Thank you, {{ username }}!</i></h3>
+            <h5 class="nomargin_top align-center"><i>Thank you, {{ username }}!</i></h5>
 
             <div id="confirm">
                 <i class="icon_check_alt2"></i>
-                <h3>Check your email!</h3>
+                <h5>Check your email!</h5>
                 <p>
                     A letter with a confirmation link was sent to mail
                     {{ email }}. Go by mail and click on the link to confirm registration

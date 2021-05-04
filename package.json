@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "bootstrap": "^4.6.0",
+    "bootstrap-sass": "^3.4.1"
+  }
+}

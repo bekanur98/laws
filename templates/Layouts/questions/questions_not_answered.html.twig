@@ -24,10 +24,10 @@
                                     Asked:
                                     <a href="#">{{ qst.getCreatedAt | date('F j, Y, g:i a')}}</a>
                                 </span>
-                                    <span class="qustion-meta-data__byline">
-                                    In:
-                                    <a href="#">Language</a>
-                                </span>
+{#                                <span class="qustion-meta-data__byline">#}
+{#                                    In:#}
+{#                                    <a href="#">Language</a>#}
+{#                                </span>#}
                                 </p>
                             </div>
                             <p class="question-block__question-title">
@@ -43,7 +43,7 @@
                         </div>
                         <div class="question-block__content">
                             <p class="question-block__question-body">
-                                {{ qst.getBodyQuestion | striptags }}
+                                {{ qst.getBodyQuestion | length > 200 ? qst.getBodyQuestion|slice(0, 200) ~ '...' : qst.getBodyQuestion|striptags|nl2br  }}
                             </p><br>
                             <div class="tranding-tags">
                                 {% for tag in qst.getTags %}
