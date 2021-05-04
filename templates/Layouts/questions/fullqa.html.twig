@@ -118,7 +118,7 @@
                             Added an answer on {{ qst.getCreatedAt | date('F j, Y, g:i a') }}
                         </p>
                         <p class="answer-item__answer">
-                            {{ ans.getAnswerBody | striptags }}
+                            {{ ans.getAnswerBody | striptags | nl2br }}
                         </p>
                         <div class="answer-item__action">
                             <div class="answer-item__rating">

@@ -40,6 +40,7 @@ class UserCrudController extends AbstractCrudController
             Field::new('password', 'Password'),
             Field::new('is_lawyer', 'Is Lawyer?'),
             TextField::new('law_licence_no', 'Law Licence №'),
+            Field::new('law_rating', 'Rating')->hideOnForm(),
             Field::new('is_locked', 'Is Locked?')->hideOnForm(),
             DateField::new('updated_at')->hideOnForm(),
         ];

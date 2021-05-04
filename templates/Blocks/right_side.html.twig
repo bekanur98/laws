@@ -6,19 +6,19 @@
         <div class="answer-stats">
             <p class="answer-stats__stat answer-stats__stat_border_left">
                 <span class="answer-stats__title answer-stats__title_blue">Questions</span>
-                <span class="answer-stats__value">21</span>
+                <span class="answer-stats__value">{{ questions|length }}</span>
             </p>
             <p class="answer-stats__stat answer-stats__stat_border_right">
-                <span class="answer-stats__title answer-stats__title_red">Questions</span>
-                <span class="answer-stats__value">21</span>
+                <span class="answer-stats__title answer-stats__title_red">Answers</span>
+                <span class="answer-stats__value">{{ answers|length }}</span>
             </p>
             <p class="answer-stats__stat answer-stats__stat_border_left">
-                <span class="answer-stats__title answer-stats__title_green">Questions</span>
-                <span class="answer-stats__value">21</span>
+                <span class="answer-stats__title answer-stats__title_green">Users</span>
+                <span class="answer-stats__value">{{ users|length }}</span>
             </p>
             <p class="answer-stats__stat answer-stats__stat_border_right">
-                <span class="answer-stats__title answer-stats__title_blue">Questions</span>
-                <span class="answer-stats__value">21</span>
+                <span class="answer-stats__title answer-stats__title_blue">Tags</span>
+                <span class="answer-stats__value">{{ tagsLen|length }}</span>
             </p>
         </div>
     </div>

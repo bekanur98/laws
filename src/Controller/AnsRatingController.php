@@ -97,16 +97,6 @@ class AnsRatingController extends AbstractController {
                 }
             }
 
-            $users = $em->getRepository(User::class)->findAll();
-            foreach($users as $usr) {
-                $rating = 0;
-                foreach($usr->getAnswers() as $a) {
-                    $rating += $a->getRating();
-                }
-                $usr->setLawRating($rating);
-                $em->persist($usr);
-            }
-
             $em->persist($answer);
             $em->flush();
 

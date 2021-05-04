@@ -50,6 +50,26 @@ class QuestionRepository extends ServiceEntityRepository
         ;
     }
 
+//    public function findTop5Answered()
+//    {
+//        $sub_query = '(SELECT COUNT(t.id) FROM BlogPostTag t WHERE blog_post_id = '.$id.')';
+//
+//        $query = $this->createQuery('q')
+//            ->select('q.*')
+//            ->addSelect($sub_query.' as nb_tags') // the number of tags will be in the nb_tags variable
+//            ->where('bp.id = ?', $id);
+//
+//        $result = $this->createQueryBuilder('q')
+//            ->select('q', 'answers')
+//            ->leftJoin('q.answers', 'answers')
+//            ->orderBy('q.views', 'DESC')
+//            ->setMaxResults(5)
+//            ->getQuery()
+//            ->getResult()
+//        ;
+//
+//        return $result;
+//    }
     // /**
     //  * @return Question[] Returns an array of Question objects
     //  */

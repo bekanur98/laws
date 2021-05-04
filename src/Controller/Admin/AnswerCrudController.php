@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Answer;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -22,6 +23,7 @@ class AnswerCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextEditorField::new('answer_body', 'Answer'),
+            Field::new('rating', 'Rating')->hideOnForm(),
             AssociationField::new('question', 'To Question')->autocomplete(),
             AssociationField::new('user', 'Username')->autocomplete(),
         ];

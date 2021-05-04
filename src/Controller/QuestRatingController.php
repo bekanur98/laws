@@ -95,16 +95,6 @@ class QuestRatingController extends AbstractController {
                 }
             }
 
-            $users = $em->getRepository(User::class)->findAll();
-            foreach($users as $usr) {
-                $rating = 0;
-                foreach($usr->getQuestions() as $q) {
-                    $rating += $q->getRating();
-                }
-                $usr->setLawRating($rating);
-                $em->persist($usr);
-            }
-
             $em->persist($question);
             $em->flush();
 

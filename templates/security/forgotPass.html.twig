@@ -3,11 +3,20 @@
 
 {% block body %}
 
-    <form method="post" action="{{ path('sendVerificationCode') }}">
-        <input type="hidden" name="email" value="<?php echo $email;?>">
-        <label>Enter your email to reset password</label><br><br>
-        <input type="email" name='email'><br><br>
-        <button class="btn">Reset Password</button>
-    </form>
+    <div class="form-wrapper form-wrapper_login">
+        <form method="post" action="{{ path('sendVerificationCode') }}" class="form">
+            <label>Enter your email and username to reset password</label>
+            <label>
+                Username
+                <input type="text" name='username'>
+            </label>
+
+            <label>
+                Email
+                <input type="email" name='email'>
+            </label>
+            <button class="btn">Reset Password</button>
+        </form>
+    </div>
 
 {% endblock %}

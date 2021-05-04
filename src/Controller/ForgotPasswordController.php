@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ForgotPasswordController extends AbstractController {
 
     /**
-     * @Route ("/forgot_password", name = "redirectToForgPass")
+     * @Route ("/forgot_password", name = "forgotPass")
      */
     public function redirectToForgPass() {
         return $this->render('security/forgotPass.html.twig');
@@ -24,34 +24,26 @@ class ForgotPasswordController extends AbstractController {
      */
     public function sendEmail(\Swift_Mailer $mailer, Request $request) {
         $email = $request->request->get('email');
+        $username = $request->request->get('username');
+
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository(User::class)->findOneBy(['username' => $username]);
 
         $message = (new \Swift_Message('Email'))
             ->setFrom('1804.01023@manas.edu.kg')
             ->setTo(''.$email)
             ->setBody(
-                $this->renderView('emails/forgotPass.html.twig'),
+                $this->renderView('emails/forgotPass.html.twig',[
+                    'id' => $user->getId()
+                ]),
                 'text/html'
             )
         ;
 
         $mailer->send($message);
 
-        return $this->render('security/sendVerifCode.html.twig', ['email'=>$email]);
+        return $this->render('security/sendVerifCode.html.twig', ['email'=>$email, 'username'=>$username]);
     }
-
-//    public function updatePassword(Request $request) {
-//        $em = $this->getDoctrine()->getManager();
-//
-//        $user = $em->getRepository(User::class)->findOneBy($email);
-//
-//        $form = $this->createForm(ResetPasswordType::class, $user);
-//
-//        $form->handleRequest($request);
-//
-//        if($form->isSubmitted() && $form->isValid()) {
-//
-//        }
-//    }
 }
 
 ?>

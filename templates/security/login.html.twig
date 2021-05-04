@@ -6,8 +6,7 @@
     <div class="form-wrapper form-wrapper_login">
         <form method="post" class="form">
             {% if error %}
-                <div class="alert alert-danger" style="color: red">! Incorrect username or password</div>
-{#                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>#}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
 
             {% if app.user %}
@@ -49,7 +48,7 @@
 {#                    </label>#}
 {#                </div>#}
 
-            <p class="form__reset-link"><a href="{{ path('redirectToForgPass') }}">Forgot password?</a></p>
+            <p class="form__reset-link"><a href="{{ path('forgotPass') }}">Forgot password?</a></p>
             <button class="btn" type="submit">
                 Sign in
             </button>

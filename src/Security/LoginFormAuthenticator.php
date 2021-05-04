@@ -73,6 +73,10 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
             // fail authentication with a custom error
             throw new CustomUserMessageAuthenticationException('Username could not be found.');
         }
+        else if ($user->getIsLocked()) {
+            // fail authentication with a custom error
+            throw new CustomUserMessageAuthenticationException('Account is not verified.');
+        }
 
         return $user;
     }

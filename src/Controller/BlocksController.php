@@ -3,6 +3,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Answer;
+use App\Entity\Question;
 use App\Entity\Tag;
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -69,10 +71,40 @@ class BlocksController extends AbstractController
     public function rightSideAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $lawyers = $em->getRepository(User::class)->findTop3Lawyers();
+        $lawyers = $em->getRepository(User::class)->findLawyers();
+        $notLawyers = $em->getRepository(User::class)->findNotLawyers();
+
+        foreach($notLawyers as $usr) {
+            $rating = 0;
+            foreach($usr->getQuestions() as $q) {
+                $rating += $q->getRating();
+            }
+            $usr->setLawRating($rating);
+            $em->persist($usr);
+        }
+
+        foreach($lawyers as $usr) {
+            $rating = 0;
+            foreach($usr->getAnswers() as $a) {
+                $rating += $a->getRating();
+            }
+            $usr->setLawRating($rating);
+            $em->persist($usr);
+        }
+
+        $em->flush();
+
+        $lawyers = $em->getRepository(User::class)->findTop5Users();
+        $questions = $em->getRepository(Question::class)->findAll();
+        $answers = $em->getRepository(Answer::class)->findAll();
+        $users = $em->getRepository(User::class)->findAll();
+        $tagsLen = $em->getRepository(Tag::class)->findAll();
         $tags = $em->getRepository(Tag::class)->findTrendingTags();
 
-        return $this->render('Blocks/right_side.html.twig', ['tags' => $tags, 'lawyers' => $lawyers]);
+        return $this->render('Blocks/right_side.html.twig', [
+            'questions' => $questions, 'answers' => $answers,
+            'users' => $users, 'tagsLen' => $tagsLen,
+            'tags' => $tags, 'lawyers' => $lawyers]);
     }
 
     public function footerAction()

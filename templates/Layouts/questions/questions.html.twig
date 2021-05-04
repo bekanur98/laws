@@ -74,7 +74,7 @@
                     </div>
                     <div class="question-block__content">
                         <p class="question-block__question-body">
-                            {{ qst.getBodyQuestion | length > 200 ? qst.getBodyQuestion|slice(0, 200) ~ '...' : qst.getBodyQuestion|striptags|nl2br  }}
+                            {{ qst.getBodyQuestion | length > 200 ? qst.getBodyQuestion|striptags|slice(0, 200) ~ '...' : qst.getBodyQuestion|striptags|nl2br  }}
                         </p><br>
                         <div class="tranding-tags">
 

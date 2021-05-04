@@ -93,18 +93,13 @@ class RegistrationController extends AbstractController
                 ->setBody(
                     $this->renderView(
                         'emails/registration.html.twig',
-                        ['name' => $user->getUsername()]
+                        ['name' => $user->getUsername(), 'id' => $user->getId()]
                     ),
                     'text/html'
                 )
             ;
 
-            $result = $this->mailer->send($message);
-
-            if($result) {
-                return $this->render('security/checkEmail.html.twig', [
-                    'username'=> $user->getUsername(), 'email'=>$user->getEmail()]);
-            }
+            $this->mailer->send($message);
 
             return $this->render('security/checkEmail.html.twig', [
                 'username'=> $user->getUsername(), 'email'=>$user->getEmail()]);
@@ -134,5 +129,19 @@ class RegistrationController extends AbstractController
 
     }
 
+    /**
+     * @Route("/verify-email/{id}", name="verifyAccount")
+     */
+    public function verifyAccount(Request $request, $id) {
+
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository(User::class)->find($id);
+        $user->setIsLocked(false);
+
+        $em->persist($user);
+        $em->flush();
+
+        return $this->redirectToRoute('app_login');
+    }
 
 }
