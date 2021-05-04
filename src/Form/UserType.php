@@ -41,9 +41,9 @@ class UserType extends AbstractType
                     'Female' => false
                 ]
             ])
-            ->add('phone_number', TextType::class, ['label' => 'Phone number'])
-            ->add('is_lawyer', CheckboxType::class, ['label' => 'Lawyer'])
-            ->add('law_licence_no', TextType::class, ['label' => 'Licence No.'])
+            ->add('phone_number', TextType::class, ['label' => 'Phone number','required' => false])
+            ->add('is_lawyer', CheckboxType::class, ['label' => 'Lawyer','required' => false])
+            ->add('law_licence_no', TextType::class, ['label' => 'Licence No.','required' => false])
         ;
     }
 

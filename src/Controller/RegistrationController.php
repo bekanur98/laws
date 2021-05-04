@@ -69,6 +69,15 @@ class RegistrationController extends AbstractController
 
             $em->persist($user);
 
+            try {
+                $em->flush();
+            } catch (\Exception $e) {
+                // if all else fails, just return an empty array
+                return $this->render('security/registration.html.twig', array(
+                    'form' => $form->createView(), 'errors' => true
+                ));
+            }
+
             $message = (new \Swift_Message('Email'))
                 ->setFrom('1804.01023@manas.edu.kg')
                 ->setTo(''.$user->getEmail())
@@ -93,7 +102,7 @@ class RegistrationController extends AbstractController
         }
 
         return $this->render('security/registration.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(), 'errors' => false
         ));
 
 
