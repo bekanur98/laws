@@ -84,7 +84,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ;
     }
 
-    public function findTop5Users()
+    public function findTop3Users()
     {
         return $this->createQueryBuilder('u')
 //            ->select('u', 'q')
@@ -92,7 +92,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->andWhere('u.is_lawyer = false')
             ->orderBy('u.law_rating', 'DESC')
 //            ->addOrderBy('q.rating', 'DESC')
-            ->setMaxResults(5)
+            ->setMaxResults(3)
             ->getQuery()
             ->getResult()
             ;

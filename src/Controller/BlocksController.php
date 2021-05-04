@@ -94,7 +94,7 @@ class BlocksController extends AbstractController
 
         $em->flush();
 
-        $lawyers = $em->getRepository(User::class)->findTop5Users();
+        $lawyers = $em->getRepository(User::class)->findTop3Users();
         $questions = $em->getRepository(Question::class)->findAll();
         $answers = $em->getRepository(Answer::class)->findAll();
         $users = $em->getRepository(User::class)->findAll();
