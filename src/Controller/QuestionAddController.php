@@ -34,6 +34,14 @@ class QuestionAddController extends AbstractController {
             return $this->redirectToRoute('app_login');
         }
         else {
+            if($this->security->getUser()->getIsLawyer()) {
+                $this->addFlash(
+                    'error',
+                    'Lawyer cannot create questions!'
+                );
+
+                return $this->redirectToRoute('newQuestions');
+            }
             $question = new Question();
             $form = $this->createForm(QuestionType::class, $question);
 
@@ -75,6 +83,14 @@ class QuestionAddController extends AbstractController {
             return $this->redirectToRoute('app_login');
         }
         else {
+            if(!$this->security->getUser()->getIsLawyer()) {
+                $this->addFlash(
+                    'error',
+                    'Only lawyers can answer to questions!'
+                );
+
+                return $this->redirectToRoute('showQA', ['id' => $id]);
+            }
             $answer = new Answer();
             $form = $this->createForm(AnswerType::class, $answer);
 

@@ -6,7 +6,8 @@
     <div class=" form-wrapper">
         <form method="post" class="form form_register">
             {% for message in app.flashes('error') %}
-                <div class="alert alert-danger">
+                <div class="alert alert-danger alert-dismissible fade show">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
                     {{ message }}
                 </div>
             {% endfor %}
