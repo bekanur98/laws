@@ -41,6 +41,8 @@ class QuestRatingController extends AbstractController {
                         if ($ql[0]->getIsUpvote()) {
                             $question->setRating($question->getRating() - 1);
                             $ql[0]->setIsLiked(false);
+                            $em->remove($ql[0]);
+                            $em->flush();
                         } else {
                             $question->setRating($question->getRating() + 1);
 
@@ -71,6 +73,8 @@ class QuestRatingController extends AbstractController {
                         if (!$ql[0]->getIsUpvote()) {
                             $question->setRating($question->getRating() + 1);
                             $ql[0]->setIsLiked(false);
+                            $em->remove($ql);
+                            $em->flush();
                         } else {
                             $question->setRating($question->getRating() - 1);
 
@@ -98,7 +102,7 @@ class QuestRatingController extends AbstractController {
             $em->persist($question);
             $em->flush();
 
-            return $this->redirectToRoute('showQA', ['id' => $id]);
+            return $this->redirectToRoute('showQuestions');
         }
     }
 }

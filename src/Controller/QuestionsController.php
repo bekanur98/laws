@@ -25,7 +25,7 @@ class QuestionsController extends AbstractController {
      */
     public function showQuestions() {
 
-        $user = $this->security->getUser();
+        $user = $this->security->getUser()->getId();
         $entityManager = $this->getDoctrine()->getManager();
         $questions = $entityManager->getRepository(Question::class)->findAllQuestions();
 
@@ -36,7 +36,7 @@ class QuestionsController extends AbstractController {
             $entityManager->flush();
         }
 
-        return $this->render('Layouts/questions/questions.html.twig', array('questions'=>$questions, 'user'=>$user));
+        return $this->render('Layouts/questions/questions.html.twig', array('questions'=>$questions, 'userId'=>$user));
     }
 
     /**

@@ -68,7 +68,19 @@
 {#                                {% endif %}#}
 {#                            {% endfor %}#}
 {#                        {% endfor %}#}
-                        <a href="{{ path('ratingUpdate', {'id': qst.getId, 'like': 1}) }}"><p class="vote-up"></p></a>
+
+                        <a href="{{ path('ratingUpdate', {'id': qst.getId, 'like': 1}) }}">
+                        <p class="vote-up"
+                                {% for qstLikes in qst.questionLikes %}
+                                    {% for qstLikeUser in qstLikes.user %}
+                                        {% if qstLikeUser.id == userId%}
+                                            style="color: #0d6aad"
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
+                           >
+                        </p>
+                        </a>
                         <p class="vote-result">{{ qst.getRating }}</p>
                         <a href="{{ path('ratingUpdate', {'id': qst.getId, 'like': 0}) }}"><p class="vote-bottom"></p></a>
                     </div>
