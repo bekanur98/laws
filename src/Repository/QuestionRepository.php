@@ -38,6 +38,14 @@ class QuestionRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
+    public function findTop5HighestRated() {
+        return $this->createQueryBuilder('q')
+            ->orderBy('q.rating', 'DESC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 
     public function findByTag($q_tag) {
         return $this->createQueryBuilder('q')
@@ -50,26 +58,28 @@ class QuestionRepository extends ServiceEntityRepository
         ;
     }
 
-//    public function findTop5Answered()
-//    {
-//        $sub_query = '(SELECT COUNT(t.id) FROM BlogPostTag t WHERE blog_post_id = '.$id.')';
-//
-//        $query = $this->createQuery('q')
-//            ->select('q.*')
-//            ->addSelect($sub_query.' as nb_tags') // the number of tags will be in the nb_tags variable
-//            ->where('bp.id = ?', $id);
-//
-//        $result = $this->createQueryBuilder('q')
-//            ->select('q', 'answers')
-//            ->leftJoin('q.answers', 'answers')
-//            ->orderBy('q.views', 'DESC')
-//            ->setMaxResults(5)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//
-//        return $result;
-//    }
+    public function findAllQuestions() {
+        return $this->createQueryBuilder('q')
+            ->select('q', 'ql', 'user')
+            ->leftJoin('q.questionLikes', 'ql')
+            ->leftJoin('ql.user', 'user')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findTop5MostAnswered() {
+        return $this->createQueryBuilder('q')
+            ->select('q')
+            ->leftJoin('q.answers', 'a')
+            ->groupBy('q.id')
+            ->orderBy('count(a.question)', 'DESC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Question[] Returns an array of Question objects
     //  */

@@ -100,11 +100,12 @@ class BlocksController extends AbstractController
         $users = $em->getRepository(User::class)->findAll();
         $tagsLen = $em->getRepository(Tag::class)->findAll();
         $tags = $em->getRepository(Tag::class)->findTrendingTags();
+        $qsts = $em->getRepository(Question::class)->findTop5MostAnswered();
 
         return $this->render('Blocks/right_side.html.twig', [
             'questions' => $questions, 'answers' => $answers,
             'users' => $users, 'tagsLen' => $tagsLen,
-            'tags' => $tags, 'lawyers' => $lawyers]);
+            'tags' => $tags, 'lawyers' => $lawyers, 'qsts' => $qsts]);
     }
 
     public function footerAction()

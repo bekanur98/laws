@@ -24,43 +24,32 @@
     </div>
     <div class="popular-answers">
         <div class="popular-answers__tab">
-            <button class="popular-answers__btn popular-answers__btn_active">Popular</button>
-            <button class="popular-answers__btn">Answers</button>
+            <button class="popular-answers__btn popular-answers__btn_active">Popular Questions</button>
+            <button class="popular-answers__btn">Popular Answers</button></a>
         </div>
         <div class="popular-answers__content">
+            {% for qst in qsts %}
             <div class="popular-item-answer">
                 <div class="popular-item-answer__avatar">
                     <img src="{{ asset('img/avatar.jpg') }}" alt="avatar">
                 </div>
                 <div class="popular-item-answer__content">
                     <p class="popular-item-answer__question">
-                        <a href="#">
-                            What is a programmer’s life like?
+                        <a href="{{ path('showQA', {id: qst.getId}) }}">
+{#                            {{ qst.getTitleQuestion}}#}
+                            {{ qst.getTitleQuestion | length > 25 ? qst.getTitleQuestion|striptags|slice(0, 25) ~ '...' : qst.getTitleQuestion|striptags|nl2br  }}
                         </a>
                     </p>
                     <p class="popular-item-answer__answers">
-                        <a href="#">5 answers</a>
+                        {% if qst.getAnswers|length < 2 %}
+                            {{ qst.getAnswers|length }} Answer
+                        {% else %}
+                            {{ qst.getAnswers|length }} Answers
+                        {% endif %}
                     </p>
                 </div>
             </div>
-            <div class="popular-item-answer">
-                <div class="popular-item-answer__avatar">
-                    <img src="{{ asset('img/avatar.jpg') }}" alt="avatar">
-                </div>
-                <div class="popular-item-answer__content">
-                    <p class="popular-item-answer__question">
-                        <a href="#">
-                            What is a programmer’s life like?
-                        </a>
-                    </p>
-                    <p class="popular-item-answer__answers">
-                        <a href="#">5 answers</a>
-                    </p>
-                </div>
-                <div class="popular-answer-item">
-
-                </div>
-            </div>
+            {% endfor %}
         </div>
 
         <div class="top-members-block">

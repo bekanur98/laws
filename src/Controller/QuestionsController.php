@@ -27,7 +27,7 @@ class QuestionsController extends AbstractController {
 
         $user = $this->security->getUser();
         $entityManager = $this->getDoctrine()->getManager();
-        $questions = $entityManager->getRepository(Question::class)->findAll();
+        $questions = $entityManager->getRepository(Question::class)->findAllQuestions();
 
         foreach ($questions as $q) {
             $q->setViews($q->getViews() + 1);
@@ -46,6 +46,25 @@ class QuestionsController extends AbstractController {
         $user = $this->security->getUser();
         $entityManager = $this->getDoctrine()->getManager();
         $questions = $entityManager->getRepository(Question::class)->findTop5NewQuestions();
+
+        foreach ($questions as $q) {
+            $q->setViews($q->getViews() + 1);
+
+            $entityManager->persist($q);
+            $entityManager->flush();
+        }
+
+        return $this->render('Layouts/questions/questions.html.twig', ['questions' => $questions, 'user'=>$user]);
+
+    }
+
+    /**
+     * @Route("/questions/highest-rated", name="highRated")
+     */
+    public function showMostAnswered() {
+        $user = $this->security->getUser();
+        $entityManager = $this->getDoctrine()->getManager();
+        $questions = $entityManager->getRepository(Question::class)->findTop5HighestRated();
 
         foreach ($questions as $q) {
             $q->setViews($q->getViews() + 1);

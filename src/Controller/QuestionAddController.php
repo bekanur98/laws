@@ -34,14 +34,6 @@ class QuestionAddController extends AbstractController {
             return $this->redirectToRoute('app_login');
         }
         else {
-            if($this->security->getUser()->getIsLawyer()) {
-                $this->addFlash(
-                    'error',
-                    'Lawyer cannot create questions!'
-                );
-
-                return $this->redirectToRoute('newQuestions');
-            }
             $question = new Question();
             $form = $this->createForm(QuestionType::class, $question);
 
