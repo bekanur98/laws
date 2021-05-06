@@ -75,6 +75,9 @@
                                 {% endfor %}>
                             </p>
                         </a>
+                        {% if qst.getIsAnswered %}
+                            <button class="tranding-tags__tag" style="color: limegreen">solved</button>
+                        {% endif %}
                     </div>
                     <div class="question-block__content">
                         <p class="question-block__question-body">

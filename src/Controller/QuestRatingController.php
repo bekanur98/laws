@@ -34,6 +34,14 @@ class QuestRatingController extends AbstractController {
             return $this->redirectToRoute('app_login');
         }
         else {
+            if($question->getUser() == $user) {
+                $this->addFlash(
+                    'error',
+                    'You can\'t rate your own question!'
+                );
+
+                return $this->redirectToRoute('showQA', ['id' => $id]);
+            }
             $ql = $em->getRepository(QuestionLike::class)->findByQuestionUser($id, $user->getId());
             if ($like == 1) {
                 if ($ql) {

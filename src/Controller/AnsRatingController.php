@@ -36,6 +36,14 @@ class AnsRatingController extends AbstractController {
             return $this->redirectToRoute('app_login');
         }
         else {
+            if($answer->getUser() == $user) {
+                $this->addFlash(
+                    'error',
+                    'You can\'t rate your own answer!'
+                );
+
+                return $this->redirectToRoute('showQA', ['id' => $qid]);
+            }
             $al = $em->getRepository(AnswerLike::class)->findByAnswerUser($id, $user->getId());
             if ($like == 1) {
                 if ($al) {
@@ -83,7 +91,7 @@ class AnsRatingController extends AbstractController {
                             $em->remove($al[0]);
                             $em->flush();
                         }
-                        else if($al[0]->getIsUpvote) {
+                        else if($al[0]->getIsUpvote()) {
                             $answer->setRating($answer->getRating() - 2);
                             $al[0]->setIsUpvote(false);
                         }

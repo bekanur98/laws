@@ -26,7 +26,7 @@ class QuestionRepository extends ServiceEntityRepository
             ->setMaxResults(5)
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
 
     public function findTop5Visited()
@@ -36,15 +36,34 @@ class QuestionRepository extends ServiceEntityRepository
             ->setMaxResults(5)
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
+
+    public function findAnswered()
+    {
+        return $this->createQueryBuilder('q')
+            ->where('q.is_answered = 1')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findUnanswered()
+    {
+        return $this->createQueryBuilder('q')
+            ->andWhere('q.is_answered = 0')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     public function findTop5HighestRated() {
         return $this->createQueryBuilder('q')
             ->orderBy('q.rating', 'DESC')
             ->setMaxResults(5)
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
 
     public function findByTag($q_tag) {

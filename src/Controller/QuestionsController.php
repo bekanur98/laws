@@ -25,7 +25,11 @@ class QuestionsController extends AbstractController {
      */
     public function showQuestions() {
 
-        $user = $this->security->getUser()->getId();
+        $u = $this->security->getUser();
+        if($u)
+            $user = $u->getId();
+        else
+            $user = null;
         $entityManager = $this->getDoctrine()->getManager();
         $questions = $entityManager->getRepository(Question::class)->findAllQuestions();
 
@@ -43,7 +47,11 @@ class QuestionsController extends AbstractController {
      * @Route("/question/{id}", name="showQA")
      */
     public function showQA(int $id) {
-        $user = $this->security->getUser()->getId();
+        $u = $this->security->getUser();
+        if($u)
+            $user = $u->getId();
+        else
+            $user = null;
         $repository = $this->getDoctrine()->getRepository(Question::class);
         $question = $repository->find($id);
 
@@ -61,7 +69,11 @@ class QuestionsController extends AbstractController {
      * @Route("/questions/new", name="newQuestions")
      */
     public function showNewQuestions() {
-        $user = $this->security->getUser()->getId();
+        $u = $this->security->getUser();
+        if($u)
+            $user = $u->getId();
+        else
+            $user = null;
         $entityManager = $this->getDoctrine()->getManager();
         $questions = $entityManager->getRepository(Question::class)->findTop5NewQuestions();
 
@@ -80,7 +92,11 @@ class QuestionsController extends AbstractController {
      * @Route("/questions/highest-rated", name="highRated")
      */
     public function showMostAnswered() {
-        $user = $this->security->getUser()->getId();
+        $u = $this->security->getUser();
+        if($u)
+            $user = $u->getId();
+        else
+            $user = null;
         $entityManager = $this->getDoctrine()->getManager();
         $questions = $entityManager->getRepository(Question::class)->findTop5HighestRated();
 
@@ -96,59 +112,19 @@ class QuestionsController extends AbstractController {
     }
 
     /**
-     * @Route("/questions/answered", name="answeredQuestions")
-     */
-    public function showAnsweredQuestions() {
-        $user = $this->security->getUser()->getId();
-        $entityManager = $this->getDoctrine()->getManager();
-        $questions = $entityManager->getRepository(Question::class)->findAll();
-
-        foreach ($questions as $q) {
-            if(count($q->getAnswers()) > 0) {
-                $q->setViews($q->getViews() + 1);
-                $q->setIsAnswered(true);
-            }
-
-            $entityManager->persist($q);
-            $entityManager->flush();
-        }
-
-        return $this->render('Layouts/questions/questions_answered.html.twig', ['questions'=>$questions, 'userId'=>$user]);
-    }
-
-    /**
-     * @Route("/questions/unanswered", name="notAnsweredQuestions")
-     */
-    public function showNotAnsweredQuestions() {
-        $user = $this->security->getUser()->getId();
-        $entityManager = $this->getDoctrine()->getManager();
-        $questions = $entityManager->getRepository(Question::class)->findAll();
-
-        foreach ($questions as $q) {
-            if(count($q->getAnswers()) > 0) {
-                $q->setViews($q->getViews() + 1);
-                $q->setIsAnswered(true);
-            }
-
-            $entityManager->persist($q);
-            $entityManager->flush();
-        }
-
-        return $this->render('Layouts/questions/questions_not_answered.html.twig', ['questions'=>$questions, 'userId'=>$user]);
-    }
-
-    /**
      * @Route("/questions/most_visited", name="mostVisitedQuestions")
      */
     public function showMostVisitedQuestions() {
-        $user = $this->security->getUser()->getId();
+        $u = $this->security->getUser();
+        if($u)
+            $user = $u->getId();
+        else
+            $user = null;
         $entityManager = $this->getDoctrine()->getManager();
         $questions = $entityManager->getRepository(Question::class)->findTop5Visited();
 
         foreach ($questions as $q) {
             $q->setViews($q->getViews() + 1);
-            if(count($q->getAnswers()) != 0)
-                $q->setIsAnswered(true);
 
             $entityManager->persist($q);
             $entityManager->flush();
@@ -161,11 +137,22 @@ class QuestionsController extends AbstractController {
      * @Route("/questions/search/tag", name="searchByTag")
      */
     public function searchByTag(Request $request) {
-        $user = $this->security->getUser()->getId();
+        $u = $this->security->getUser();
+        if($u)
+            $user = $u->getId();
+        else
+            $user = null;
         $em = $this->getDoctrine()->getManager();
 
         $tag = $request->request->get('tag');
         $questions = $em->getRepository(Question::class)->findByTag($tag);
+
+        foreach ($questions as $q) {
+            $q->setViews($q->getViews() + 1);
+
+            $em->persist($q);
+            $em->flush();
+        }
 
         return $this->render('Layouts/questions/questions.html.twig', array('questions'=>$questions, 'userId'=>$user));
     }

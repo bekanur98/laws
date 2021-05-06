@@ -53,6 +53,11 @@ class Answer
      */
     private $answerLikes;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isCorrect;
+
     public function __construct()
     {
         $this->rating = 0;
@@ -148,6 +153,18 @@ class Answer
         if ($this->answerLikes->removeElement($answerLike)) {
             $answerLike->removeAnswer($this);
         }
+
+        return $this;
+    }
+
+    public function getIsCorrect(): ?bool
+    {
+        return $this->isCorrect;
+    }
+
+    public function setIsCorrect(?bool $isCorrect): self
+    {
+        $this->isCorrect = $isCorrect;
 
         return $this;
     }

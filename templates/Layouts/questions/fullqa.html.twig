@@ -137,6 +137,15 @@
                         <p class="answer-item__meta">
                             Added an answer on {{ qst.getCreatedAt | date('F j, Y, g:i a') }}
                         </p>
+                        {% if qst.getUser.getId == userId %}
+                            {% if ans.isCorrect %}
+                                <a href="{{ path('setAsCorrect', {'id': ans.getId, 'qid': qst.getId}) }}"><button class="tranding-tags__tag" style="color: limegreen">correct</button></a>
+                            {% else %}
+                                <a href="{{ path('setAsCorrect', {'id': ans.getId, 'qid': qst.getId}) }}"><button class="tranding-tags__tag">correct</button></a>
+                            {% endif %}
+                        {% elseif ans.isCorrect %}
+                            <button class="tranding-tags__tag" style="color: limegreen">correct</button>
+                        {% endif %}
                         <p class="answer-item__answer">
                             {{ ans.getAnswerBody | striptags | nl2br }}
                         </p>
