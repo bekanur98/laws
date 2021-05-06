@@ -48,41 +48,33 @@
                 </div>
                 <div class="question-block__bottom">
                     <div class="question-block__rating">
-{#                        {% for ql in qst.getQuestionLikes %}#}
-{#                            {% for u in ql.getUser %}#}
-{#                                {% if u == user %}#}
-{#                                    {% if ql.getIsUpvote %}#}
-{#                                        Up#}
-{#                                        <a class="active" href="{{ path('ratingUpdate', {'id': qst.getId, 'like': 1}) }}"><p class="vote-up"></p></a>#}
-{#                                    {% elseif ql.getIsUpvote == false%}#}
-{#                                        Down#}
-{#                                        <a href="{{ path('ratingUpdate', {'id': qst.getId, 'like': 1}) }}"><p class="vote-up"></p></a>#}
-{#                                    {% else %}#}
-{#                                        None#}
-{#                                        <a href="{{ path('ratingUpdate', {'id': qst.getId, 'like': 1}) }}"><p class="vote-up"></p></a>#}
-{#                                    {% endif %}#}
-
-{#                                {% else %}#}
-{#                                    None#}
-{#                                        <a href="{{ path('ratingUpdate', {'id': qst.getId, 'like': 1}) }}"><p class="vote-up"></p></a>#}
-{#                                {% endif %}#}
-{#                            {% endfor %}#}
-{#                        {% endfor %}#}
-
                         <a href="{{ path('ratingUpdate', {'id': qst.getId, 'like': 1}) }}">
-                        <p class="vote-up"
+                            <p class="vote-up"
                                 {% for qstLikes in qst.questionLikes %}
-                                    {% for qstLikeUser in qstLikes.user %}
-                                        {% if qstLikeUser.id == userId%}
-                                            style="color: #0d6aad"
-                                        {% endif %}
-                                    {% endfor %}
-                                {% endfor %}
-                           >
-                        </p>
+                                    {% if qstLikes.isUpvote == true %}
+                                        {% for qstLikeUser in qstLikes.user %}
+                                            {% if qstLikeUser.id == userId%}
+                                                style="color: #007bff"
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endfor %}>
+                            </p>
                         </a>
                         <p class="vote-result">{{ qst.getRating }}</p>
-                        <a href="{{ path('ratingUpdate', {'id': qst.getId, 'like': 0}) }}"><p class="vote-bottom"></p></a>
+                        <a href="{{ path('ratingUpdate', {'id': qst.getId, 'like': 0}) }}">
+                            <p class="vote-bottom"
+                                {% for qstLikes in qst.questionLikes %}
+                                    {% if qstLikes.isUpvote == false %}
+                                        {% for qstLikeUser in qstLikes.user %}
+                                            {% if qstLikeUser.id == userId%}
+                                                style="color: #007bff"
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endfor %}>
+                            </p>
+                        </a>
                     </div>
                     <div class="question-block__content">
                         <p class="question-block__question-body">

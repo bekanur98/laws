@@ -43,7 +43,14 @@ class AnsRatingController extends AbstractController {
                         if ($al[0]->getIsUpvote()) {
                             $answer->setRating($answer->getRating() - 1);
                             $al[0]->setIsLiked(false);
-                        } else {
+                            $em->remove($al[0]);
+                            $em->flush();
+                        }
+                        else if($al[0]->getIsUpvote() == false) {
+                            $answer->setRating($answer->getRating() + 2);
+                            $al[0]->setIsUpvote(true);
+                        }
+                        else {
                             $answer->setRating($answer->getRating() + 1);
 
                             $al[0]->setIsUpvote(true);
@@ -73,7 +80,14 @@ class AnsRatingController extends AbstractController {
                         if (!$al[0]->getIsUpvote()) {
                             $answer->setRating($answer->getRating() + 1);
                             $al[0]->setIsLiked(false);
-                        } else {
+                            $em->remove($al[0]);
+                            $em->flush();
+                        }
+                        else if($al[0]->getIsUpvote) {
+                            $answer->setRating($answer->getRating() - 2);
+                            $al[0]->setIsUpvote(false);
+                        }
+                        else {
                             $answer->setRating($answer->getRating() - 1);
 
                             $al[0]->setIsUpvote(false);

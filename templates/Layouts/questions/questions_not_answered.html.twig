@@ -24,10 +24,6 @@
                                     Asked:
                                     <a href="#">{{ qst.getCreatedAt | date('F j, Y, g:i a')}}</a>
                                 </span>
-{#                                <span class="qustion-meta-data__byline">#}
-{#                                    In:#}
-{#                                    <a href="#">Language</a>#}
-{#                                </span>#}
                                 </p>
                             </div>
                             <p class="question-block__question-title">
@@ -37,9 +33,33 @@
                     </div>
                     <div class="question-block__bottom">
                         <div class="question-block__rating">
-                            <a href="{{ path('ratingUpdate', {'id': qst.getId, 'like': 1}) }}"><p class="vote-up"></p></a>
+                            <a href="{{ path('ratingUpdate', {'id': qst.getId, 'like': 1}) }}">
+                                <p class="vote-up"
+                                        {% for qstLikes in qst.questionLikes %}
+                                    {% if qstLikes.isUpvote == true %}
+                                        {% for qstLikeUser in qstLikes.user %}
+                                            {% if qstLikeUser.id == userId%}
+                                                style="color: #007bff"
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                        {% endfor %}>
+                                </p>
+                            </a>
                             <p class="vote-result">{{ qst.getRating }}</p>
-                            <a href="{{ path('ratingUpdate', {'id': qst.getId, 'like': 0}) }}"><p class="vote-bottom"></p></a>
+                            <a href="{{ path('ratingUpdate', {'id': qst.getId, 'like': 0}) }}">
+                                <p class="vote-bottom"
+                                        {% for qstLikes in qst.questionLikes %}
+                                    {% if qstLikes.isUpvote == false %}
+                                        {% for qstLikeUser in qstLikes.user %}
+                                            {% if qstLikeUser.id == userId%}
+                                                style="color: #007bff"
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                        {% endfor %}>
+                                </p>
+                            </a>
                         </div>
                         <div class="question-block__content">
                             <p class="question-block__question-body">
