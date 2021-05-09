@@ -43,7 +43,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->orderBy('u.username', 'ASC')
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
 
     public function findLawyersByRegTime()
@@ -53,7 +53,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->orderBy('u.createdAt', 'DESC')
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
 
     public function findLawyersByRating()
@@ -63,7 +63,37 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->orderBy('u.law_rating', 'DESC')
             ->getQuery()
             ->getResult()
-            ;
+        ;
+    }
+
+    public function findNotLawyersByAlph()
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.is_lawyer = false')
+            ->orderBy('u.username', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findNotLawyersByRegTime()
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.is_lawyer = false')
+            ->orderBy('u.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findNotLawyersByRating()
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.is_lawyer = false')
+            ->orderBy('u.law_rating', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     public function findLawyers()
@@ -72,7 +102,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->andWhere('u.is_lawyer = true')
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
 
     public function findNotLawyers()
@@ -81,7 +111,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->andWhere('u.is_lawyer = false')
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
 
     public function findTop3Users()
@@ -95,7 +125,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->setMaxResults(3)
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
 
     // /**

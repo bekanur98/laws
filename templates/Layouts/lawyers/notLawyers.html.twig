@@ -1,0 +1,16 @@
+{% extends 'Default/home.html.twig' %}
+
+{% block content %}
+    <div class="content">
+
+        <div class="questions-block">
+            <div class="questions-tab">
+                <a href="{{ path('notLawyersAlph') }}" class="questions-tab__item">Alphabetical order</a>
+                <a href="{{ path('notLawyersByRating') }}" class="questions-tab__item">Rating</a>
+                <a href="{{ path('notLawyersReg') }}" class="questions-tab__item">Registration date</a>
+            </div>
+            {% block lawyersList %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

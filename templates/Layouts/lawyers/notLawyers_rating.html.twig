@@ -1,0 +1,26 @@
+{% extends 'Layouts/lawyers/notLawyers.html.twig' %}
+
+{% block lawyersList %}
+    <div class="container">
+        <table class="table">
+            <thead class="thead-light">
+            <tr>
+{#                <th scope="col">Name</th>#}
+{#                <th scope="col">Surname</th>#}
+                <th scope="col">Username</th>
+                <th scope="col">Rating</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for lawyer in lawyers %}
+                <tr>
+{#                    <td>{{ lawyer.getFirstname }}</td>#}
+{#                    <td>{{ lawyer.getLastname }}</td>#}
+                    <td>{{ lawyer.getUsername }}</td>
+                    <td>{{ lawyer.getLawRating}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
