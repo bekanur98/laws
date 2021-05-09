@@ -32,6 +32,18 @@ class AnswerRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findSortedAnswers($qst)
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.question = :qst')
+            ->setParameter('qst', $qst)
+            ->orderBy('a.isCorrect', 'DESC')
+            ->addOrderBy('a.rating', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     /*
     public function findOneBySomeField($value): ?Answer
     {

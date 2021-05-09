@@ -52,17 +52,17 @@ class QuestionsController extends AbstractController {
             $user = $u->getId();
         else
             $user = null;
-        $repository = $this->getDoctrine()->getRepository(Question::class);
-        $question = $repository->find($id);
 
-        $entityManager = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
+        $question = $em->getRepository(Question::class)->find($id);
+        $answers = $em->getRepository(Answer::class)->findSortedAnswers($question);
 
         $question->setViews($question->getViews() + 1);
 
-        $entityManager->persist($question);
-        $entityManager->flush();
+        $em->persist($question);
+        $em->flush();
 
-        return $this->render('Layouts/questions/fullqa.html.twig', ["qst"=>$question, 'userId'=>$user]);
+        return $this->render('Layouts/questions/fullqa.html.twig', ["qst"=>$question, 'answers'=>$answers, 'userId'=>$user]);
     }
 
     /**
