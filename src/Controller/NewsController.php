@@ -18,7 +18,7 @@ class NewsController extends AbstractController {
     public function showNews()
     {
         $em = $this->getDoctrine()->getManager();
-        $news = $em->getRepository(News::class)->findAll();
+        $news = $em->getRepository(News::class)->findSortedByDate();
 
         foreach ($news as $n) {
             $n->setViews($n->getViews() + 1);

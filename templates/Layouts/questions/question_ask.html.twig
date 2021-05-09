@@ -6,6 +6,10 @@
     {{ form_start(form) }}
     {{ form_row(form.title_question) }}
     {{ form_row(form.body_question) }}
+{#    {{ form_row(form.tags) }}#}
+    <h3>Tags</h3>
+    <ul class="tags" data-prototype="{{ form_widget(form.tags.vars.prototype)|e('html_attr') }}"></ul>
+    <button type="button" class="add_item_link" data-collection-holder-class="tags">Add a tag</button>
 
     {{ form_row(form.submit) }}
 

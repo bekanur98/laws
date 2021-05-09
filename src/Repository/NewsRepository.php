@@ -19,6 +19,15 @@ class NewsRepository extends ServiceEntityRepository
         parent::__construct($registry, News::class);
     }
 
+    public function findSortedByDate()
+    {
+        return $this->createQueryBuilder('n')
+            ->orderBy('n.created_at', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return News[] Returns an array of News objects
     //  */
