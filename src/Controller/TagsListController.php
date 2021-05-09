@@ -14,7 +14,7 @@ class TagsListController extends AbstractController {
         $repository = $this->getDoctrine()->getRepository(Tag::class);
         $tags = $repository->findAll();
 
-        return $this->render("Blocks/tags.html.twig", ['tags'=>$tags]);
+        return $this->render("Layouts/tags/tags_by_name.html.twig", ['tags'=>$tags]);
     }
 }
 ?>

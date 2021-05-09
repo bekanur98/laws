@@ -1,7 +1,9 @@
 {% extends 'Layouts/lawyers/lawyers.html.twig' %}
 
 {% block lawyersList %}
-    {% for lawyer in lawyers %}
-        {{ lawyer.getUsername }} <br>
-    {% endfor %}
+    <ul class="list-group">
+        {% for lawyer in lawyers %}
+            <li class="list-group-item">{{ lawyer.getUsername }}</li>
+        {% endfor %}
+    </ul>
 {% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'Default/home.html.twig' %}
+{% block page_title %}Tags{% endblock %}
+
+{% block content %}
+    <div class="content">
+
+        <div class="questions-block">
+            <div class="questions-tab">
+                <a href="{{ path('showTagsList') }}" class="questions-tab__item">Alphabetical order</a>
+            </div>
+            {% block tagsList %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

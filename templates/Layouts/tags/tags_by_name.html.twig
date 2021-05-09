@@ -1,0 +1,16 @@
+{% extends "Layouts/tags/tags.html.twig" %}
+
+{% block tagsList %}
+
+    <div class="container">
+
+        {% for tag in tags | sortbyfield('name')%}
+            <form method="POST" style="display: inline-block" action="{{path('searchByTag')}}">
+                <input type="hidden" class="search-block__input" placeholder="Type Search Words" name="tag" value="{{ tag.getName }}">
+                <button class="tranding-tags__tag">{{ tag.getName }}</button>
+            </form>
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

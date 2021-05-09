@@ -1,7 +1,27 @@
 {% extends 'Layouts/lawyers/lawyers.html.twig' %}
 
 {% block lawyersList %}
-    {% for lawyer in lawyers %}
-        {{ lawyer.getUsername }} -> Registered at {{ lawyer.getCreatedAt | date('F j, Y, g:i a') }} <br>
-    {% endfor %}
+<div class="container">
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+{#            <th scope="col">Name</th>#}
+{#            <th scope="col">Surname</th>#}
+            <th scope="col">Username</th>
+            <th scope="col">Reg. date</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for lawyer in lawyers %}
+            <tr>
+{#                <td>{{ lawyer.getFirstname }}</td>#}
+{#                <td>{{ lawyer.getLastname }}</td>#}
+                <td>{{ lawyer.getUsername }}</td>
+                <td>{{ lawyer.getCreatedAt | date('F j, Y') }}</td>
+{#                <td>{{ lawyer.getCreatedAt | date('F j, Y, g:i a') }}</td>#}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}

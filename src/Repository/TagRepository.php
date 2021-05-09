@@ -22,11 +22,11 @@ class TagRepository extends ServiceEntityRepository
     public function findTrendingTags()
     {
         return $this->createQueryBuilder('t')
-            ->orderBy('t.amount', 'DESC')
+            ->orderBy('SIZE(t.question)', 'DESC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
 
     // /**
