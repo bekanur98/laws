@@ -68,7 +68,7 @@ class QuestionRepository extends ServiceEntityRepository
 
     public function findByTag($q_tag) {
         return $this->createQueryBuilder('q')
-            ->select('q', 'tags')
+            ->select('q')
             ->leftJoin('q.tags', 'tags')
             ->andWhere('tags.name LIKE :q_tag')
             ->setParameter('q_tag', '%'.$q_tag.'%')
