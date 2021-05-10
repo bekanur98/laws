@@ -46,6 +46,10 @@ class QuestionAddController extends AbstractController {
                  * @var Question ques
                  */
                 $ques = $form->getData();
+                $tagsNew = $ques->getTags();
+                foreach ($tagsNew as $tag) {
+                    $tag->addQuestion($ques);
+                }
 
                 $entityManager->persist($ques);
                 $entityManager->flush();

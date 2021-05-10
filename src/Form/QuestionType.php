@@ -23,18 +23,15 @@ class QuestionType extends AbstractType {
         $builder
             ->add('title_question')
             ->add('body_question')
-            ->add('tags', CollectionType::class, [
-                'entry_type' => TagType::class,
-                'entry_options' => ['label' => false],
-                'label_format' => 'form.tags.%name%',
-                'allow_add' => true,
+            ->add('tags', EntityType::class, [
+                'class' => 'App:Tag',
+                'label' => 'Tags',
+                'attr' => [
+                    'class' => 'selectpicker'
+                ],
+                'choice_label' => 'name',
+                'multiple' => true,
             ])
-//            ->add('tags', EntityType::class, [
-//                'class' => 'App:Tag',
-//                'label' => 'Tags',
-//                'choice_label' => 'name',
-//                'multiple' => true,
-//            ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Ask Question',
                 'attr' => [
